@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
             if($user == 'admin'){
               header('location: creacioConsultes.php');
           }else{
-             header("location: profile.php");
+             header("location: principal.php");
              }// Redirecting To Other Page
         } else {
             $error = "Username or Password is invalidddd".$user;
