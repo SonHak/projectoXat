@@ -23,12 +23,12 @@
 
   </head>
 
-  <body id="page-top">
+  <body id="page-top" style="overflow-x:hidden;">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <div class="container" style="background-color: black; opacity: 0.85; padding: 5px 50px;border-radius: 15px">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img height="50" src="img/logo-nav.jpg" style=" margin-left: 15px; border-radius: 10px; margin-right: 20px;">Ayuntamiento de Cornella</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -52,10 +52,11 @@
     <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
-        <div class="container">
+        <div class="container" style="margin-top: -500px;padding-right: 1890px; height: 150%; position: absolute; z-index: 5; background-color: black; opacity: 0.3;"></div>
+        <div class="container" style="position: relative; z-index: 10;">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h1 class="brand-heading">PROYECTO VOTA</h1>
+              <h1 class="brand-heading">PROYECTO CHAT</h1>
               <a href="#about" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
