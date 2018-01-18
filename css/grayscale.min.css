@@ -151,7 +151,8 @@
  	padding-bottom:150px
  	}
  .download-section{
- 	color:#fff;background:url(../img/logotipo.jpg) no-repeat center center scroll;
+ 	color:#fff;
+ 	/*background:url(../img/logotipo.jpg) no-repeat center center scroll;*/
  	background-color:#000;
  	-webkit-background-size:cover;
  	-moz-background-size:cover;
