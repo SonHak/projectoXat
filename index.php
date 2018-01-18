@@ -20,9 +20,9 @@
         if(isset($_SESSION['login_user'])){
 
             if($user == 'admin'){
-                header('location: creacioConsultes.php');
+                header('location: principal.php');
             }else{
-                header("location: profile.php");
+                header("location: principal.php");
             }
         }
         ?>
