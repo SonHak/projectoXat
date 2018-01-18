@@ -20,9 +20,9 @@
         if(isset($_SESSION['login_user'])){
 
             if($user == 'admin'){
-                header('location: creacioConsultes.php');
+                header('location: principal.php');
             }else{
-                header("location: profile.php");
+                header("location: principal.php");
             }
         }
         ?>
@@ -33,7 +33,7 @@
             </div>
             <!-- Main Form -->
             <div class="login-form-1">
-                <form id="login-form" class="text-left" action="" method="post" >
+                <form id="login-form" class="text-left" action="login.php" method="post" >
                     <div class="login-form-main-message"></div>
                     <div class="main-login-form">
                         <div class="login-group">
