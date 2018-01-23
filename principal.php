@@ -42,7 +42,10 @@
               <a class="nav-link js-scroll-trigger" href="#download">Denuncias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Chat</a>
+              <a class="nav-link js-scroll-trigger" href="#chat">Chat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
             </li>
           </ul>
         </div>
@@ -52,7 +55,7 @@
     <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
-        <div class="container" style="margin-top: -500px;padding-right: 1890px; height: 150%; position: absolute; z-index: 5; background-color: black; opacity: 0.3;"></div>
+        <div class="container" style="margin-top: -500px;padding-right: 1890px; height: 127%; position: absolute; z-index: 5; background-color: black; opacity: 0.3;"></div>
         <div class="container" style="position: relative; z-index: 10;">
           <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -94,22 +97,31 @@
 
 
     <!-- AQUÍ VA EL CHAT-->
-    <!-- Map Section -->
-    <div id="chat">
-      <?php 
-        include('chat.php');
-      ?>
-    </div>
+    <section id="chat" class="content-section text-center">
+        <div class="container">
+            <div class="col-lg-8 mx-auto">
+                <?php
+                include('chat.php');
+                ?>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="content-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Contact Start Bootstrap</h2>
-            <p>Feel free to leave us a comment on the
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
-              on Start Bootstrap to give some feedback about this theme!</p>
+            <h2>Contacta con nosotros y te daremos soporte!</h2>
+            <form>
+                <label><h7>Email: </h7></label><br>
+                <input type="email" placeholder="example@email.com"><br>
+                <label><h7>Asunto: </h7></label><br>
+                <input type="text" maxlength="50"><br>
+                <label><h7>Breve explicación: </h7></label><br>
+                <textarea maxlength="250"></textarea><br><br><br>
+
+            </form>
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
                 <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
@@ -136,9 +148,9 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="footer">
       <div class="container text-center">
-        <p>Copyright &copy; Your Website 2017</p>
+        Copyright &copy; projectoChat 2018
       </div>
     </footer>
 
