@@ -55,7 +55,7 @@
     <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
-        <div class="container" style="margin-top: -500px;padding-right: 1890px; height: 127%; position: absolute; z-index: 5; background-color: black; opacity: 0.3;"></div>
+        <div class="container" style="margin-top: -500px;padding-right: 1890px; height: 123.25%; position: absolute; z-index: 5; background-color: black; opacity: 0.3;"></div>
         <div class="container" style="position: relative; z-index: 10;">
           <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -161,11 +161,9 @@
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
     <!-- Custom scripts for this template -->
-    <script src="js/grayscale.min.js"></script>
+    <script src="js/grayscale.js"></script>
+
 
   </body>
 

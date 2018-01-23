@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="css/style-chat.css">
 
 <h2>CHAT</h2>
-<div class="wrapper">
+<button id="btnChat" class="btn btn-success btn-lg" style="border-radius: 10px" onclick="startChat()">Entrar</button>
+<div id="boxChat" class="wrapper">
     <nav class="nav" id="nav">
         <div class="default-nav">
             <div class="main-nav">
