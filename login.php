@@ -23,12 +23,12 @@ if (isset($_POST['submit'])) {
         if ($user == $username && $password == $pass) {
             $_SESSION['login_user']=$username; // Initializing Session
             if($user == 'admin'){
-              header('location: creacioConsultes.php');
+              header('location: principal.php');
           }else{
              header("location: principal.php");
              }// Redirecting To Other Page
         } else {
-            $error = "Username or Password is invalidddd".$user;
+            $error = "Username or Password is invalid".$user;
         }
     }
     echo $error;
