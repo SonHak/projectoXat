@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
              header("location: principal.php");
              }// Redirecting To Other Page
         } else {
-            $error = "Username or Password is invalidddd".$user;
+            $error = "Username or Password is invalid".$user;
         }
     }
     echo $error;

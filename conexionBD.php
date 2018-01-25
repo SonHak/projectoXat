@@ -9,5 +9,4 @@
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
         exit;
     }
-
 ?>
