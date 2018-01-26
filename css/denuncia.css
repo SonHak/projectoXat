@@ -30,8 +30,12 @@ i.fa .fa-mail-forward{
 }
 
 form.denuncias{
-	padding: 2%;
+	margin-top: 5px;
+	padding: 3%;
 	border-radius: 3px;
-	background-color: rgb(92, 184, 88);
-	height:  10%;
+	background-color: #898980;
+
+}
+.denuncias label{
+	 font: 25px Arial, sans-serif;
 }

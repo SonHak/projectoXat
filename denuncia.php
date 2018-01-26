@@ -4,11 +4,11 @@
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 <button type="button" class="btn btn-default btn-lg" id="DBotonNuevo">Nueva Denuncia</button>
 <button type="button" class="btn btn-default btn-lg" id="DBotonVolver">Mostrar Denuncias</button>
-<div class="container"> 
-	<div id="myCarousel" class="carousel slide col-lg-16 mx-auto" data-ride="carousel">
+<div class="container" style="padding:15%"> 
+	<div id="myCarousel" class="carousel slide col-lg-16 mx-auto" data-ride="carousel" >
 
 		<!-- Wrapper for slides -->
-		<div class="carousel-inner">
+		<div class="carousel-inner" >
 			<div class="item active">
 				<img src="img/mueble1.jpg" alt="mueble1" style="width:100%;">
 				<form class="denuncias">
@@ -25,11 +25,7 @@
 				</form>
 			</div>
 		</div>
-
-		<div id="map" style="width:400px;height:400px;background:yellow;margin:0 auto">
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_F98e_jFiFEDUFTYL9zYFMfB4NsjfrrE&callback=myMap"></script>
-
-		</div>
+		
 
 		<!-- Left and right controls -->
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -45,19 +41,24 @@
 	</div>
 
 	<div id="denunciaForm" class='collapse'>
-		<form class='denuncias'>
-			<div class="row">
-				<div class="col">
-					<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-				</div>
-				<div class="col">
-					<button type="button" class="btn btn-light btn-lg" >INSERTAR</button>
-				</div>
+		<form class="denuncias">
+			<div class="form-group">
+				<label >FECHA DEL INCIDENTE</label>
+				<input type="date" class="form-control">
 			</div>
-		</form>
+			<div class="form-group">
+				<label >ADJUNTAR IMAGEN</label>
+				<input type="file" class="form-control">
+			</div>
+		</div>
+	</form>
+	<br>
+
+		<div id="map" style="width:400px;height:400px;background:yellow;margin:0 auto">
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_F98e_jFiFEDUFTYL9zYFMfB4NsjfrrE&callback=myMap"></script>
+
+		</div>
+
 	</div>
-
-
-</div>
 
 
