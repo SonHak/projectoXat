@@ -1,33 +1,54 @@
+/*
+* Creador Moises Ortega
+*Javascript para el apartado "FORO"
+*/
+
+/********* Funciones generales de uso vario **********/
+function FadeInFOR(elemento, tiempo){
+	$(elemento).fadeIn(tiempo);
+}
+
+function FadeOutFOR(elemento, tiempo){
+	$(elemento).fadeOut(tiempo);
+}
+
+/********* Funciones JQuery **********/
 $(function(){
-	$('#FORopciones').click(function(){
-		$('#FORopcionesTab').delay(800).fadeIn(FadeOutTab('.FORtable'));
+	$('#FORopiniones').click(function(){
+		$('#FORopinionesTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
 $(function(){
 	$('#FORpreguntas').click(function(){
-		$('#FORpreguntasTab').delay(800).fadeIn(FadeOutTab('.FORtable'));
+		$('#FORpreguntasTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
 $(function(){
 	$('#Formejoras').click(function(){
-		$('#FORmejorasTab').delay(800).fadeIn(FadeOutTab('.FORtable'));
+		$('#FORmejorasTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
 $(function(){
 	$('#FORgeneral').click(function(){
-		$('#FORgeneralTab').delay(800).fadeIn(FadeOutTab('.FORtable'));
+		$('#FORgeneralTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
-function FadeInTab(elemento, tiempo){
-	$(elemento).fadeIn(tiempo);
-}
+$(function(){
+	$('#crearOpinion').delay(800).fadeIn(FadeOutFOR())
+});
 
-function FadeOutTab(elemento, tiempo){
-	$(elemento).fadeOut(tiempo);
-}
-
-//fadeout mas tiempo fadein menos
+$(document).ready(function () {
+	(function ($) {
+		$('#filtrar').keyup(function () {
+			var rex = new RegExp($(this).val(), 'i');
+			$('.buscar tr').hide();
+			$('.buscar tr').filter(function () {
+				return rex.test($(this).text());
+			}).show();
+		})
+	}(jQuery));
+});

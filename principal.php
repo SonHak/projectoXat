@@ -70,8 +70,8 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="content-section text-center">
-      <div class="container">
+    <section id="about" class="content-section text-center" style="height: 600px;">
+      <div class="container" style="margin-top: -12%">
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <!--AQUÍ VA EL FORO-->
