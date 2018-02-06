@@ -39,6 +39,6 @@ class Denuncias extends Migration
     public function down()
     {
         Schema::dropIfExists('denuncias');
-        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
     }
 }
