@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,15 +12,16 @@
     <title>Proyecto Chat</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
     
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="{{ url('css/grayscale.min.css')}}" rel="stylesheet">
 
   </head>
 
@@ -28,7 +30,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container" style="background-color: black; opacity: 0.85; padding: 5px 50px;border-radius: 15px">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img height="50" src="img/logo-nav.jpg" style=" margin-left: 15px; border-radius: 10px; margin-right: 20px;">Ayuntamiento de Cornella</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img height="50" src="{{ url('img/logo-nav.jpg') }}" style=" margin-left: 15px; border-radius: 10px; margin-right: 20px;">Ayuntamiento de Cornella</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -75,9 +77,7 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <!--AQUÍ VA EL FORO-->
-            <?php
-            include('foro.php');
-            ?>
+            @include('foro')
           </div>
         </div>
       </div>
@@ -88,9 +88,7 @@
       <div class="container">
         <div class="col-lg-8 mx-auto">
           <!--AQUÍ VA DEBATES-->
-          <?php
-            include('denuncia.php');
-          ?>
+          @include('denuncia')
         </div>
       </div>
     </section>
@@ -100,9 +98,7 @@
     <section id="chat" class="content-section text-center">
         <div class="container">
             <div class="col-lg-8 mx-auto">
-                <?php
-                include('chat.php');
-                ?>
+             @include('chat')
             </div>
         </div>
     </section>
@@ -155,21 +151,21 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script  src="{{ url('js/jquery2.1.3.min.js') }}"></script>
+    <script src="{{ url('js/bootstrap.bundle.min.js')}}"></script>
 
+    <!-- Plugin JavaScript 
+    <script src="{{ URL::asset('js/jquery.easing.min.js')}}"></script>
+    -->
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.js"></script>
-    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ url('js/jquery-3.2.1.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
 
   </body>
 
 </html>
-
 
 
 

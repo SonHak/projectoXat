@@ -1,11 +1,12 @@
-<link href="css/forocss.css" type="text/css" rel="stylesheet">
+
+<link href="{{url('css/forocss.css')}}" type="text/css" rel="stylesheet">
 
 <!-- Javascript del Foro -->
-<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-<script src="js/foroJS.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{ url('js/jquery-3.2.1.js')}}"></script>
+<script src="{{ url('js/foroJS.js')}}" type="text/javascript"></script>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 
-<img src="img/ForoIcono.png"/>
+<img src="{{url('img/ForoIcono.png')}}"/>
 <br></br>
 <div class="form-group">
 	<button class="btn btn-default" id="FORopiniones" name="FORtest">Opiniones</button>
