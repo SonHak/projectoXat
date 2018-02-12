@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +15,7 @@
     <!-- Bootstrap core CSS -->
 
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url('css/breadcrumbs.css') }}" rel="stylesheet">
     <link href="{{ url('css/banner.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -27,13 +29,15 @@
 
   </head>
 
-  <body id="page-top" style="overflow-x:hidden;" onload="dropInPubli()">
+  <body id="page-top" style="overflow-x:hidden;" onload="dropInPubli()" >
+    <div id="caja-flotante" class="collapse">
+    
+    </div>
      <!-- BANNER -->
     <div id="banner" class="collapse ">
         <span><a href="https://www.google.com" target="_blank" onclick="dropOutPubli()">[x]</a></span>
         <img src="https://s-media-cache-ak0.pinimg.com/originals/22/9a/60/229a60a18da1a3d96549f598703a0a71.jpg">
     </div>
-   
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -56,6 +60,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
+            </li>
+            <li>
+               <a class="nav-link js-scroll-trigger" href="{{url('/logout')}}">Logout</a>
             </li>
           </ul>
         </div>
@@ -171,6 +178,7 @@
 
     <!-- Custom scripts for this template -->
     <script type="text/javascript" src="{{ url('js/grayscale.js')}}"></script>
+    <script type="text/javascript" src="{{ url('js/breadcrumbs.js')}}"></script>
     <script type="text/javascript" src="{{ url('js/banner.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/jquery-3.2.1.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>

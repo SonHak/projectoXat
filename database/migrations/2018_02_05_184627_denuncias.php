@@ -21,7 +21,7 @@ class Denuncias extends Migration
             $table->integer('id_user')->unsigned();
             $table->binary('foto');
             $table->text('respuesta')->nullable();
-            $table->tinyInteger('activa');
+            $table->tinyInteger('activa')->default(0);
             $table->timestamps();
 
 

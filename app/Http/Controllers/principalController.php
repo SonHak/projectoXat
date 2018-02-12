@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Session;
 use Auth;
 use DB;
+
 use Illuminate\Support\Facades\Input;
+use App\Denuncias;
+use App\Http\Controllers\Controller;
 
 
 use Illuminate\Http\Request;
@@ -19,7 +22,9 @@ class principalController extends Controller
     public function index()
     {
         //
-        return view('layouts.principal');
+        $dbquery = DB::table('denuncias')->where('id_user', Auth::user()->id)->get();
+
+        return view('layouts.principal',['arrayDenuncias' => $dbquery]);
     }
 
     /**
@@ -41,23 +46,17 @@ class principalController extends Controller
     public function store(Request $request)
     {
         //
-        $user_id = Auth::user()->id;
-        $titulo = $request -> input('titulo');
-        $texto = $request -> input('texto');   
-        $fecha = $request -> input('fecha');
-        $imagen = file_get_contents(Input::file('imagen')->getRealPath());
+        $db = new Denuncias;
+        $db -> titulo = $request -> input('titulo');
+        $db -> desc = $request -> input('texto'); 
+        $db -> id_user = Auth::user()->id;  
+        $db -> created_at = $request -> input('fecha');
+        $ruta = 'App/storage';
+        $db -> foto = Input::file('imagen')->move($ruta);
 
+        $db -> save();
 
-        DB::table('denuncias')->insert(
-            [
-                'titulo' => $titulo,
-                'desc' => $texto,
-                'id_user' => $user_id,
-                'foto' => $imagen,
-                'activa' => 0,
-                'created_at' => $fecha
-            ]
-        );
+        return redirect('home');
     }
 
     /**

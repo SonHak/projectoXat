@@ -8,24 +8,21 @@
 	<div id="myCarousel" class="carousel slide col-lg-16 mx-auto" data-ride="carousel" >
 
 		<!-- Wrapper for slides -->
+		@foreach( $arrayDenuncias as $denuncia )
 		<div class="carousel-inner" >
 			<div class="item active">
-				<img src="{{url('img/mueble1.jpg')}}" alt="mueble1" style="width:100%;">
+				<?php
+					echo "<img src='".$denuncia->foto."' alt='mueble1' style='width:100%;'>";
+				?>
 				<form class="denuncias">
 					<label>Hora</label>
 					<input type="text" readonly value="18:34 AM"/>
 				</form>
-			</div>
-
-			<div class="item">
-				<img src="{{url('img/mueble2.jpg')}}" alt="mueble2" style="width:100%;">
-				<form class="denuncias">
-					<label>Hora</label>
-					<input type="text" readonly value="22:54 PM"/>
-				</form>
+				
 			</div>
 		</div>
-		
+
+		@endforeach
 
 		<!-- Left and right controls -->
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -42,6 +39,7 @@
 
 	<div id="denunciaForm" class='collapse'>
 		<form class="denuncias" method="POST" enctype="multipart/form-data" action="{{ url('createDenuncia') }}">
+			{{ csrf_field() }}
 			<div  class="form-group">
 				<label >TÍTULO DEL INCIDENTE</label>
 				<input class="form-control" type="text" placeholder="titulo" name="titulo">

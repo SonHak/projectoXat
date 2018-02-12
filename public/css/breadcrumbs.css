@@ -1,0 +1,8 @@
+ #caja-flotante {
+        width: 200px;
+        height: auto;
+        color: white;
+        position: fixed;
+        top: 100px;
+        left: 0;
+      }
