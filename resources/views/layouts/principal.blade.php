@@ -14,7 +14,9 @@
     <!-- Bootstrap core CSS -->
 
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
-    
+    <link href="{{ url('css/banner.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
     <!-- Custom fonts for this template -->
     <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -25,7 +27,13 @@
 
   </head>
 
-  <body id="page-top" style="overflow-x:hidden;">
+  <body id="page-top" style="overflow-x:hidden;" onload="dropInPubli()">
+     <!-- BANNER -->
+    <div id="banner" class="collapse ">
+        <span><a href="https://www.google.com" target="_blank" onclick="dropOutPubli()">[x]</a></span>
+        <img src="https://s-media-cache-ak0.pinimg.com/originals/22/9a/60/229a60a18da1a3d96549f598703a0a71.jpg">
+    </div>
+   
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -54,6 +62,7 @@
       </div>
     </nav>
 
+   
     <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
@@ -71,6 +80,7 @@
       </div>
     </header>
 
+
     <!-- About Section -->
     <section id="about" class="content-section text-center" style="height: 600px;">
       <div class="container" style="margin-top: -12%">
@@ -82,6 +92,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- Download Section -->
     <section id="download" class="download-section content-section text-center">
@@ -152,41 +163,18 @@
 
     <!-- Bootstrap core JavaScript -->
 
-    <script  src="{{ url('js/jquery2.1.3.min.js') }}"></script>
+    <script  src="{{ url('jquery/jquery.min.js') }}"></script>
     <script src="{{ url('js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Plugin JavaScript 
-    <script src="{{ URL::asset('js/jquery.easing.min.js')}}"></script>
-    -->
+    <!-- Plugin JavaScript -->
+    <script src="{{ URL::asset('jquery-easing/jquery.easing.min.js')}}"></script>
+
     <!-- Custom scripts for this template -->
-    <script src="js/grayscale.js"></script>
+    <script type="text/javascript" src="{{ url('js/grayscale.js')}}"></script>
+    <script type="text/javascript" src="{{ url('js/banner.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/jquery-3.2.1.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
 
   </body>
 
 </html>
-
-
-
-
-<!--
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="estilos/principal.css"></link>
-	</head>
-	<body>
-		<div id='contenedor'>
-			<header><img id='logo' src='imagenes/logo.jpg'/> </header>
-			<nav id="menu">
-				<ul>
-					<li>pri</li>
-					<li>seg</li>
-					<li>ter</li>
-				</ul>
-			</nav>
-			<footer><img id='logotipo' src='imagenes/logotipo.jpg'> </footer>
-		</div>
-	</body>
-</html>
--->

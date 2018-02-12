@@ -18,11 +18,10 @@ class Denuncias extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->text('desc');
-            $table->dateTime('fecha');
             $table->integer('id_user')->unsigned();
-            $table->string('foto');
-            $table->text('respuesta');
-            $table->binary('activa');
+            $table->binary('foto');
+            $table->text('respuesta')->nullable();
+            $table->tinyInteger('activa');
             $table->timestamps();
 
 

@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.principal');
+    return view('auth.login');
 });
+
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/createDenuncia', 'principalController@store');
+#Route::resource('/home','principalController');

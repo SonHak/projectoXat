@@ -1,0 +1,24 @@
+/* CSS Para el banner*/
+#banner{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#banner img{
+    width: 60%;
+    border: 10px solid black;          
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 8%;
+}
+
+#banner a{
+    position: fixed;
+    top: 17%;
+    right: 22%;
+    font-size: 20px;
+} 
