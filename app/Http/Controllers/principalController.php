@@ -22,9 +22,15 @@ class principalController extends Controller
     public function index()
     {
         //
-        $dbquery = DB::table('denuncias')->where('id_user', Auth::user()->id)->get();
+        if(Auth::user()->admin == 0 ){
+            $dbquery = Denuncias::where('id_user', Auth::user()->id)->get();
+            return view('layouts.principalUser',['arrayDenuncias' => $dbquery]);
 
-        return view('layouts.principal',['arrayDenuncias' => $dbquery]);
+        }else{
+            $dbquery = Denuncias::all();
+            return view('layouts.principalAdmin',['arrayDenuncias' => $dbquery]);
+        }
+       
     }
 
     /**
@@ -88,9 +94,14 @@ class principalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+         $id = $request -> input('id');
+         $db = Denuncias::find($id);
+         $db -> respuesta = $request -> input('respuesta');
+         $db -> save();
+         return redirect('home');
     }
 
     /**

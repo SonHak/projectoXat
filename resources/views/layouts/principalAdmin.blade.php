@@ -33,12 +33,12 @@
     <div id="caja-flotante" class="collapse">
     
     </div>
-     <!-- BANNER -->
+     <!-- BANNER 
     <div id="banner" class="collapse ">
         <span><a href="https://www.google.com" target="_blank" onclick="dropOutPubli()">[x]</a></span>
         <img src="https://s-media-cache-ak0.pinimg.com/originals/22/9a/60/229a60a18da1a3d96549f598703a0a71.jpg">
     </div>
-
+    -->
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container" style="background-color: black; opacity: 0.85; padding: 5px 50px;border-radius: 15px">
@@ -77,7 +77,7 @@
         <div class="container" style="position: relative; z-index: 10;">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h1 class="brand-heading">PROYECTO CHAT</h1>
+              <h1 class="brand-heading">PROYECTO CHAT ADMIN</h1>
               <a href="#about" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
@@ -106,7 +106,7 @@
       <div class="container">
         <div class="col-lg-8 mx-auto">
           <!--AQUÍ VA DEBATES-->
-          @include('denuncia')
+          @include('denunciaAdmin')
         </div>
       </div>
     </section>

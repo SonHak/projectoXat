@@ -11,14 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
-Route::get('/logout', 'Auth\LoginController@logout');
-
 
 Auth::routes();
 
+Route::get('/', function() {
+	return view('layouts.welcome');
+});
+
+Route::get('/login', function() {
+	return view('auth.login');
+});
+
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::post('updateDenuncia', 'principalController@update');
+
 Route::post('/createDenuncia', 'principalController@store');
+
 Route::resource('/home','principalController');

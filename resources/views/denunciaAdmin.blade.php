@@ -2,8 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{{url('css/denuncia.css')}}">
 <script type="text/javascript" src="{{url('js/denuncia.js')}}"></script>
 <script type="text/javascript" src="{{url('js/jquery-3.2.1.js')}}"></script>
-<button type="button" class="btn btn-default btn-lg" id="DBotonNuevo">Nueva Denuncia</button>
-<button type="button" class="btn btn-default btn-lg" id="DBotonVolver">Mostrar Denuncias</button>
+
 <div class="container" style="padding:15%"> 
 	<div id="myCarousel" class="carousel slide col-lg-16 mx-auto" data-ride="carousel" >
 
@@ -12,14 +11,16 @@
 		<div class="carousel-inner" >
 			<div class="item active">
 				<?php
-					echo "<img src='".$denuncia->foto."' alt='mueble1' style='width:100%;'>";
+					echo "<img src='".$denuncia->foto."' style='width:100%;'>";
 				?>
-				<form class="denuncias">
+				<form class="denuncias" method="POST" action="{{ url('updateDenuncia') }}">
+					{{ csrf_field() }}
+					<input  name="id" hidden value="$denuncia->id">
 					<label>Titulo: {{ $denuncia->titulo }}</label> <br>
 					<label>Hora: {{ $denuncia->created_at }}</label> <br>
 					<label>Descripción: {{$denuncia->desc}}</label><br>
-					<br>
-					<label>Respuesta: {{$denuncia->respuesta}}</label><br>
+					<textarea name="respuesta" cols="60" rows="10"  placeholder="Responder..."></textarea> <br>
+					<input type="submit" class="btn btn-default">
 				</form>
 				
 			</div>
