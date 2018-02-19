@@ -8,24 +8,25 @@
 
 		<!-- Wrapper for slides -->
 		@foreach( $arrayDenuncias as $denuncia )
-		<div class="carousel-inner" >
-			<div class="item active">
-				<?php
-					echo "<img src='".$denuncia->foto."' style='width:100%;'>";
-				?>
-				<form class="denuncias" method="POST" action="{{ url('updateDenuncia') }}">
-					{{ csrf_field() }}
-					<input  name="id" hidden value="$denuncia->id">
-					<label>Titulo: {{ $denuncia->titulo }}</label> <br>
-					<label>Hora: {{ $denuncia->created_at }}</label> <br>
-					<label>Descripción: {{$denuncia->desc}}</label><br>
-					<textarea name="respuesta" cols="60" rows="10"  placeholder="Responder..."></textarea> <br>
-					<input type="submit" class="btn btn-default">
-				</form>
-				
+		@if($denuncia->activa == 0)
+			<div class="carousel-inner" >
+				<div class="item active">
+					<?php
+						echo "<img src='".$denuncia->foto."' style='width:100%;'>";
+					?>
+					<form class="denuncias" method="POST" action="{{ url('updateDenuncia') }}">
+						{{ csrf_field() }}
+						<input  name="id" hidden value="{{$denuncia->id}}">
+						<label>Titulo: {{ $denuncia->titulo }}</label> <br>
+						<label>Hora: {{ $denuncia->created_at }}</label> <br>
+						<label>Descripción: {{$denuncia->desc}}</label><br>
+						<textarea name="respuesta" cols="60" rows="10"  placeholder="Responder..."></textarea> <br>
+						<input type="submit" class="btn btn-default">
+					</form>
+					
+				</div>
 			</div>
-		</div>
-
+		@endif
 		@endforeach
 
 		<!-- Left and right controls -->

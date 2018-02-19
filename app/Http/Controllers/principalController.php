@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 use Session;
 use Auth;
 use DB;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Input;
 use App\Denuncias;
+use App\Mensajes;
 use App\Http\Controllers\Controller;
 
 
@@ -24,11 +26,11 @@ class principalController extends Controller
         //
         if(Auth::user()->admin == 0 ){
             $dbquery = Denuncias::where('id_user', Auth::user()->id)->get();
-            return view('layouts.principalUser',['arrayDenuncias' => $dbquery]);
+            return view('layouts.principalUser',['arrayDenuncias' => $dbquery])->with('id',Auth::user()->id);
 
         }else{
             $dbquery = Denuncias::all();
-            return view('layouts.principalAdmin',['arrayDenuncias' => $dbquery]);
+            return view('layouts.principalAdmin',['arrayDenuncias' => $dbquery])->with('id',Auth::user()->id);
         }
        
     }
@@ -98,9 +100,10 @@ class principalController extends Controller
     {
         //
          $id = $request -> input('id');
-         $db = Denuncias::find($id);
-         $db -> respuesta = $request -> input('respuesta');
-         $db -> save();
+         $respuesta = $request -> input('respuesta');
+         $db = Denuncias::find($id)->where('id',$id)->update(['respuesta' => $respuesta,'activa' => 1]);
+         #$db -> respuesta = $request -> input('respuesta');
+         #$db -> save();
          return redirect('home');
     }
 
@@ -114,4 +117,18 @@ class principalController extends Controller
     {
         //
     }
+
+    public function ajaxRequest(Request $request){
+        $mensajes = new Mensajes;
+        $mensajes -> id_user = $request -> input('usuario');
+        $mensajes -> fecha = date('Y-m-d H:i:s');
+        $mensajes -> mensaje = $request -> input('texto');
+        $mensajes -> save();
+    }
+
+    public function recibirMensajes(){
+        $missatges = Mensajes::all();
+        return view('layouts.principalUser',['arrayMensajes' => $missatges]);
+    }
+
 }

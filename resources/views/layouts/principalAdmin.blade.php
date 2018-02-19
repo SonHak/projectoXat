@@ -116,7 +116,7 @@
     <section id="chat" class="content-section text-center">
         <div class="container">
             <div class="col-lg-8 mx-auto">
-             @include('chat')
+              <input type="button" onclick="alert('{{$id}}')""/>
             </div>
         </div>
     </section>
