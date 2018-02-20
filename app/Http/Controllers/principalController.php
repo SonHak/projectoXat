@@ -128,7 +128,7 @@ class principalController extends Controller
 
     public function recibirMensajes(){
         $missatges = Mensajes::all();
-        return view('layouts.principalUser',['arrayMensajes' => $missatges]);
+        #return view('layouts.principalUser',['arrayMensajes' => $missatges]);
     }
 
     public function formularioNoticia(Request $request){
@@ -137,7 +137,12 @@ class principalController extends Controller
         $db -> desc = $request -> input('desc');
         $ruta = 'App/storage';
         $db -> imagen = Input::file('foto')->move($ruta); 
-        $db -> importante = $request -> input('importante'); 
+        if($request -> input('importante') == true){
+            $db -> importante = 1;
+        }
+        else{
+            $db -> importante = 0;
+        }
         $db -> created_at = date('Y-m-d H:i:s');
        
        

@@ -25,9 +25,7 @@
         </nav>
         <div class="inner" id="inner">
             <div class="content" id="content">
-                @foreach( $arrayMensajes as $mensaje )
-                    echo '$mensaje';
-                @endforeach
+                
 
             </div>
         </div>

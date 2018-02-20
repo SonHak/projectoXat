@@ -35,7 +35,7 @@
 </div> -->
 
 
-
+<body id="page-top" style="overflow-x:hidden;" onload="dropInPubli()" >
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container" style="background-color: black; opacity: 0.85; padding: 5px 50px;border-radius: 15px">
@@ -79,20 +79,11 @@
 
 
 <!-- AQUÍ VAN NOTICIAS-->
-<section id="noticias" class="content-section text-center" style="background-color:rgba(255, 255, 255,0.8); color: black;">
+<section id="noticias" class="content-section text-center" style="background-color:rgba(255, 255, 255,0.2); color: black;">
     <div class="container">
-        <div class="col-lg-8 mx-auto">
-
-           @yield('content')
-            <a style="left: -8%" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a style="left: 95%" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        
+            @include('noticias')
+         
     </div>
 </section>
 
@@ -142,7 +133,7 @@
         Copyright &copy; projectoChat 2018
     </div>
 </footer>
-
+</body>
 <!-- Bootstrap core JavaScript -->
 
 <script  src="{{ url('jquery/jquery.min.js') }}"></script>

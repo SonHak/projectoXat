@@ -14,9 +14,7 @@
 
 Auth::routes();
 
-Route::get('/', function() {
-	return view('layouts.welcome');
-});
+Route::get('/', 'noticiasController@mostrarNoticias');
 
 Route::get('/login', function() {
 	return view('auth.login');

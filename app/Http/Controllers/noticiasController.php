@@ -10,10 +10,13 @@ class noticiasController extends Controller
 {
     //
     public function mostrarNoticias(){
-    	$noticias = new noticias;
-		$arrayNoticias = $noticias::all();
 
-		return view('noticias', ['arrayNoticias' => $arrayNoticias]);
+    	$noticias = noticias::where("importante",'!=','2')	
+    				->orderBy('importante','desc')
+    				->orderBy('created_at')	
+    				->get();
+
+		return view('layouts.welcome', ['arrayNoticias' => $noticias]);
 	}
 
 
