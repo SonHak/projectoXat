@@ -9,7 +9,8 @@
 
 	<div class="carousel-inner">
 		@foreach( $arrayNoticias as $noticia )
-			@if($noticia->importante == 1)	
+			<!--
+			@if($noticia->importante != NULL)	
 			<div class="carousel-item active">
 				
 				<div class="media border border-secondary border-top-0" style="padding: 3%">
@@ -23,6 +24,7 @@
 			
 			</div>
 			@else
+			-->
 			<div class="carousel-item">
 				
 				<div class="media border border-secondary border-top-0"  style="padding: 3%">
@@ -35,7 +37,7 @@
 				</div>
 			
 			</div>
-			@endif
+			
 		@endforeach
 	</div>
 

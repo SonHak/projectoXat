@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use Session;
 use Auth;
 use DB;
-use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Input;
 use App\Denuncias;
 use App\Mensajes;
+use App\noticias;
 use App\Http\Controllers\Controller;
 
 
@@ -129,6 +129,22 @@ class principalController extends Controller
     public function recibirMensajes(){
         $missatges = Mensajes::all();
         return view('layouts.principalUser',['arrayMensajes' => $missatges]);
+    }
+
+    public function formularioNoticia(Request $request){
+        $db = new noticias;
+        $db -> titulo = $request -> input('titulo');
+        $db -> desc = $request -> input('desc');
+        $ruta = 'App/storage';
+        $db -> imagen = Input::file('foto')->move($ruta); 
+        $db -> importante = $request -> input('importante'); 
+        $db -> created_at = date('Y-m-d H:i:s');
+       
+       
+
+        $db -> save();
+
+        return redirect('home');
     }
 
 }

@@ -56,7 +56,7 @@
               <a class="nav-link js-scroll-trigger" href="#download">Denuncias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#chat">Chat</a>
+              <a class="nav-link js-scroll-trigger" href="#Noticias">Noticias</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
@@ -113,10 +113,10 @@
 
 
     <!-- AQUÍ VA EL CHAT-->
-    <section id="chat" class="content-section text-center">
+    <section id="Noticias" class="content-section text-center">
         <div class="container">
             <div class="col-lg-8 mx-auto">
-              <input type="button" onclick="alert('{{$id}}')""/>
+              @include('noticiasAdmin')
             </div>
         </div>
     </section>
