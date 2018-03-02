@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 use Session;
 use Auth;
 use DB;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use App\Denuncias;
 use App\Mensajes;
 use App\noticias;
+use App\Chat;
 use App\Http\Controllers\Controller;
 
 
@@ -18,15 +19,16 @@ class principalController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *  ->with('arrayMensajes', response()->json($missatges)
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //
         if(Auth::user()->admin == 0 ){
+            $arrayChats = Chat::all();
             $dbquery = Denuncias::where('id_user', Auth::user()->id)->get();
-            return view('layouts.principalUser',['arrayDenuncias' => $dbquery])->with('id',Auth::user()->id);
+            return view('layouts.principalUser',['arrayDenuncias' => $dbquery])->with('id',Auth::user()->id)->with('arrayChats',$arrayChats);
 
         }else{
             $dbquery = Denuncias::all();
@@ -123,13 +125,26 @@ class principalController extends Controller
         $mensajes -> id_user = $request -> input('usuario');
         $mensajes -> fecha = date('Y-m-d H:i:s');
         $mensajes -> mensaje = $request -> input('texto');
+        $mensajes -> id_chat = $request -> input('idChat');
         $mensajes -> save();
     }
 
-    public function recibirMensajes(){
-        $missatges = Mensajes::all();
-        #return view('layouts.principalUser',['arrayMensajes' => $missatges]);
+
+    public function recibirMensajes(Request $request){
+        $horaActual = Carbon::now();
+        $diferencia = $horaActual->subHour();
+        $idchat = $request -> input('idchat');
+
+        $missatges = Mensajes::all()->where('id_chat','=',$idchat)
+                                    ->where('created_at','>',$diferencia);
+        if(sizeof($missatges) == 0){
+            $missatges = Mensajes::all()->where('id_chat','=',$idchat)
+                                        ->take(20);
+        }
+        return $missatges;
     }
+
+
 
     public function formularioNoticia(Request $request){
         $db = new noticias;
@@ -144,12 +159,11 @@ class principalController extends Controller
             $db -> importante = 0;
         }
         $db -> created_at = date('Y-m-d H:i:s');
-       
+        $db -> categoria = $request -> input('categoria');
        
 
         $db -> save();
 
         return redirect('home');
     }
-
 }

@@ -78,8 +78,17 @@
         'value': 'Enviar',
     });
 
+    var inputCategoria = $('<input>', {
+        'id':'categoria',
+        'type':'text',
+        'name':'categoria',
+        'placeholder':'Categoria',
+    });
+
     $(function() {
         $(divGeneral).append(divTitulo);
+        $(divGeneral).append($('<br>'));
+        $(divGeneral).append(inputCategoria);
         $(divGeneral).append($('<br>'));
         $(divGeneral).append(divCheckbox);
         $(divGeneral).append(divDescripcion);
@@ -118,7 +127,7 @@
 </script>
 
 
-<h2 id="tituloChatPrueba">CHAT</h2>
+<h2 id="tituloChatPrueba">Añadir Noticia</h2>
 <!--<form>
     <div class="row">
         <div class="col-md-12">

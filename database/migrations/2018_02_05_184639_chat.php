@@ -18,7 +18,7 @@ class Chat extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('id_user')->unsigned();
-            $table->binary('tipo');
+            $table->tinyInteger('tipo');
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
@@ -33,7 +33,7 @@ class Chat extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chats');
+        Schema::dropIfExists('chat');
         #$table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
     }
 }
