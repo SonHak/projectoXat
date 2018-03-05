@@ -3,9 +3,6 @@ var timer = null;
 
 function mostrar() {
 
-
-    $('#boxChat').fadeIn(1600);
-
     if( timer ){
         clearInterval(timer);
     }
@@ -30,7 +27,7 @@ function ajaxChat(id){
     .done( function() {
             console.log("consigue insertar");
             $('#texto').val(" ");
-            mensajes();
+            mostrar();
         }
     );
 
@@ -41,36 +38,43 @@ function ajaxChat(id){
 function mensajes(){
 
     var idchat = $('#idChat').val();
+    var user = $('#usuario').val();
 
     $.ajax({
         type: 'POST',
         crossDomain: true,
         url: 'api/recibirMensajes',
         cache: false,
-        data: {"idchat" : idchat},
+        data: {"idchat" : idchat, "usuario" : user},
         dataType: "json"
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           console.log("no recibe nada");
       }
     ).done(function(res) {
-            var user = $('#usuario').val();
+            //console.log(res);
+            console.log("Done del ajax");
             for(var k in res) {
-                if($('#idMensaje'+k).length == 0 || $('#idMensaje'+k).length == null){
+
+                if($('#idMensaje'+k).length == 0 || $('#idMensaje'+k).length == "" && k == 0){
+                    //console.log("Entra primer if: Check longitud mensajes");
                     if(res[k].id_user == user){
+                        //console.log("Es igual al user");
                         $('#content-mensajes').append($('<div>',
                                                          {'class':'bubble right',
                                                           'id':'idMensaje'+k
-                                                        }).append($('<p>').text(res[k].mensaje))
+                                                        }).append($('<span>',{'style': 'margin-left: -83%; font-size: 25px','class':'fa fa-user'}).text(res[k].usuario.name)).append($('<p>').text(res[k].mensaje))
                                                     );
                     }else{
+                        //console.log("No es igual al user");
                         $('#content-mensajes').append($('<div>',
                                                         {'class':'bubble left',
-                                                         'idMensaje':'idMensaje'+k,
+                                                         'id':'idMensaje'+k,
                                                          'style':'background-color:red'
-                                                        }).append($('<p>').text(res[k].mensaje))
+                                                        }).append($('<span>',{'style': 'margin-left: 83%; font-size: 25px','class':'fa fa-user'}).text(res[k].usuario.name)).append($('<p>').text(res[k].mensaje))
                                                     );
                     }
                 }
+                    //console.log("Esto no se sabe bien bien que es WTF?");
                 
             }
         }
@@ -80,6 +84,11 @@ function mensajes(){
 
 
 function cambiarChat( id ){
+
+    var sala = $('#'+id).val();
+    
+    $('#tituloSala').attr('class', 'fa fa-group');
+    $('#tituloSala').text(sala);
 
     if($('#idChat').val() == 0){
         $('#idChat').attr({'value':id , 'data-active':'y'});

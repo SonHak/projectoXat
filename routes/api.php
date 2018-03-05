@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('ajaxRequest', 'principalController@ajaxRequest');
 
+Route::post('ajaxCategorias', 'noticiasController@categoriaSeleccionada');
+
 Route::post('noticiasRequest', 'principalController@formularioNoticia');
 
 Route::post('recibirMensajes', 'principalController@recibirMensajes');

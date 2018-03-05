@@ -13,6 +13,8 @@
     <link href="{{ url('css/banner.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="{{ url('js/categoria.js')}}"></script>
+    
     <!-- Custom fonts for this template -->
     <link href="{{ url('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -47,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <div class="flex-center position-ref full-height">
 
-                <div class="links ">
+                <div class="links " style="padding-left: 500px">
 
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('register') }}">Register</a>
@@ -79,7 +81,7 @@
 
 
 <!-- AQUÍ VAN NOTICIAS-->
-<section id="noticias" class="content-section text-center" style="background-color:rgba(255, 255, 255,0.2); color: black;">
+<section id="noticias" class="content-section text-center" style="height:  1200px;background-color:rgba(255, 255, 255,0.2); color: black;">
     <div class="container">
         
             @include('noticias')
@@ -134,6 +136,8 @@
     </div>
 </footer>
 </body>
+
+
 <!-- Bootstrap core JavaScript -->
 
 <script  src="{{ url('jquery/jquery.min.js') }}"></script>
@@ -143,6 +147,7 @@
 <script src="{{ URL::asset('jquery-easing/jquery.easing.min.js')}}"></script>
 
 <!-- Custom scripts for this template -->
+
 <script type="text/javascript" src="{{ url('js/grayscale.js')}}"></script>
 <script type="text/javascript" src="{{ url('js/breadcrumbs.js')}}"></script>
 <script type="text/javascript" src="{{ url('js/banner.js') }}"></script>

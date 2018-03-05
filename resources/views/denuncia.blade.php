@@ -72,6 +72,5 @@
 		</div>
 
 	</div>
-<script async defer src="https://location.services.mozilla.com/v1/geolocate?key=test"></script>
-<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_F98e_jFiFEDUFTYL9zYFMfB4NsjfrrE&callback=myMap"></script>
--->
+<!--<script async defer src="https://location.services.mozilla.com/v1/geolocate?key=test"></script>-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_F98e_jFiFEDUFTYL9zYFMfB4NsjfrrE&callback=myMap"></script>

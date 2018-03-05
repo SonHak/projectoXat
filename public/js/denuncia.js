@@ -21,35 +21,22 @@ function FadeOutTab(elemento){
 }
 
 function myMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-            });
-            var infoWindow = new google.maps.InfoWindow({map: map});
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(posicionamiento,error);
-            } else {
-              // Browser doesn't support Geolocation
-              handleLocationError(false, infoWindow, map.getCenter());
-            }
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 41.357394, lng:2.070522},
+    zoom: 8
+  });
+  map.addListener('click', function(e) {
+    placeMarkerAndPanTo(e.latLng, map);
+  });
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
-}
-
-function posicionamiento(position){
-    var pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-    infoWindow.setPosition(pos);
-    infoWindow.setContent('Location found.');
-    //map.setCenter(pos);
-    map.LatLng(pos);
-    map.setZoom(10);
-
+function placeMarkerAndPanTo(latLng, map) {
+  $('.gmnoprint').remove();
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
 }
 
 function error(err) {

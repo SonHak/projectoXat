@@ -135,14 +135,21 @@ class principalController extends Controller
         $diferencia = $horaActual->subHour();
         $idchat = $request -> input('idchat');
 
-        $missatges = Mensajes::all()->where('id_chat','=',$idchat)
-                                    ->where('created_at','>',$diferencia);
-        if(sizeof($missatges) == 0){
-            $missatges = Mensajes::all()->where('id_chat','=',$idchat)
-                                        ->take(20);
+
+        $missatges = Mensajes::with("usuario")->where('id_chat','=',$idchat)
+                                              ->where('created_at','>=',$diferencia)
+                                              ->get();
+        if(sizeof($missatges) == 0 || count($missatges) == 0){
+            $missatges = Mensajes::with("usuario")->where('id_chat','=',$idchat)
+                                                  ->take(20)
+                                                  ->get();
         }
+       /* $missatges = Mensajes::with("usuario")->get();*/
+
         return $missatges;
     }
+
+
 
 
 

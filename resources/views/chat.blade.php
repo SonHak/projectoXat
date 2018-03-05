@@ -12,10 +12,6 @@
 <div class="row center-block" style="margin-top:12px;">
                         @foreach( $arrayChats as $chat )
                             <input type="button" class="btn btn-outline-light col-3" id="{{ $chat->id }}" value="{{ $chat->nombre }}" onclick="cambiarChat({{ $chat->id }})">
-                                
-                        <!--<input type="button" class="btn btn-outline-light col-3" value="San Ildefons">
-                        <input type="button" class="btn btn-outline-light col-3" value="Almeda">
-                        <input type="button" class="btn btn-outline-light col-3" value="Rambla">-->
                         @endforeach
                     </div>
 <button id="btnChat" class="btn btn-success btn-lg" style="border-radius: 10px" onclick="salirChat()">Salir</button>
@@ -30,7 +26,7 @@
         <nav class="nav" id="nav">
             <div class="default-nav">
                 <div class="main-nav">
-                    
+                    <i class="" id="tituloSala" style="font-size:30px; margin-top: 20px"></i>
                 </div>
             </div>
         </nav>
