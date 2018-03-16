@@ -24,65 +24,35 @@
 <table class="table table-hover collapse FORtable" id="FORopinionesTab">
 	<thead>
 		<tr>
-			<th class="col-xs-2">Titulo</th>
-			<th class="col-xs-2">Contenido</th>
-			<th class="col-xs-2">Fecha</th>
-			<!--<th class="col-xs-2">Usuario</th>-->
-			<th class="col-xs-2">Comentarios</th>
-			<th class="col-xs-2"></th>
+			<th class="col-xs-4">Titulo</th>
+			<th class="col-xs-4">Contenido</th>
+			<th class="col-xs-4">Fecha</th>
 		</tr>
 	</thead>
 	<tbody class="buscar">
-		<tr>
-			<td>Gran ciudad</td>
-			<td>12-01-2018</td>
-			<td>Antonio</td>
-			<td>2</td>
-			<td><i class="fa fa-comments" title="Ver Comentarios"></i></td>
-		</tr>
 	</tbody>
 </table>
 <!-- Tabla de Preguntas -->
 <table class="table table-hover collapse FORtable" id="FORpreguntasTab">
 	<thead>
 		<tr>
-			<th class="col-xs-2">Titulo</th>
-			<th class="col-xs-2">Contenido</th>
-			<th class="col-xs-2">Fecha</th>
-			<!--<th class="col-xs-2">Usuario</th>-->
-			<th class="col-xs-2">Comentarios</th>
-			<th class="col-xs-2"></th>
+			<th class="col-xs-4">Titulo</th>
+			<th class="col-xs-4">Contenido</th>
+			<th class="col-xs-4">Fecha</th>
 		</tr>
 	</thead>
 	<tbody class="buscar">
-		<tr>
-			<td>Pregunta 3</td>
-			<td>11-11-2017</td>
-			<td>Maria</td>
-			<td>2</td>
-			<td><i class="fa fa-comments" title="Ver Comentarios"></i></td>
-		</tr>
 	</tbody>
 </table>
 <!-- Tabla de Mejoras -->
 <table class="table table-hover collapse FORtable" id="FORmejorasTab">
 	<thead>
 		<tr>
-			<th class="col-xs-2">Titulo</th>
-			<th class="col-xs-2">Contenido</th>
-			<th class="col-xs-2">Fecha</th>
-			<!--<th class="col-xs-2">Usuario</th>-->
-			<th class="col-xs-2">Comentarios</th>
-			<th class="col-xs-2"></th>
+			<th class="col-xs-4">Titulo</th>
+			<th class="col-xs-4">Contenido</th>
+			<th class="col-xs-4">Fecha</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Mejora 3</td>
-			<td>11-11-2017</td>
-			<td>Maria</td>
-			<td>2</td>
-			<td><i class="fa fa-comments" title="Ver Comentarios"></i></td>
-		</tr>
 	</tbody>
 </table>

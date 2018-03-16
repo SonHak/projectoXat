@@ -1,42 +1,67 @@
-/*
-* Creador Moises Ortega
-*Javascript para el apartado "FORO"
-*/
+
+//Creador Moises Ortega
+//Javascript para el apartado "FORO"
 
 // Funciones generales de uso vario
+
+/**
+* @method FadeInFOR
+* @param elemento {String} | tiempo {int}
+*/
 function FadeInFOR(elemento, tiempo){
 	$(elemento).fadeIn(tiempo);
 }
 
+/**
+* @method FadeInFOR
+* @param elemento {String} | tiempo {int}
+ */
 function FadeOutFOR(elemento, tiempo){
 	$(elemento).fadeOut(tiempo);
 }
 
 // Funciones JQuery
+
+/** 
+*@method function click '#FORpreguntas'
+*/
 $(function(){
 	$('#FORopiniones').click(function(){
 		$('#FORopinionesTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
+/**
+*@method function click '#FORpreguntas'
+ */
 $(function(){
 	$('#FORpreguntas').click(function(){
 		$('#FORpreguntasTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
+/**
+*@method function click '#Formejoras'
+ */
 $(function(){
 	$('#Formejoras').click(function(){
 		$('#FORmejorasTab').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
+/**
+*@method function click '#crearForo'
+ */
 $(function(){
 	$('#crearForo').click(function(){
 		$('#formularioForo').delay(800).fadeIn(FadeOutFOR('.FORtable'));
 	})
 });
 
+/**
+* Buscador del Foro
+*@method keyup
+ */
 $(document).ready(function () {
 	(function ($) {
 		$('#filtrar').keyup(function () {
@@ -49,7 +74,9 @@ $(document).ready(function () {
 	}(jQuery));
 });
 
-//Crear formulario DOM
+/**
+*@method formForo
+*/
 var formForo = $('<form>',{
     'method': 'POST',
     'name': 'formularioForo',
@@ -57,14 +84,23 @@ var formForo = $('<form>',{
     'class': 'FORtable collapse',
 });
 
+/**
+*@method divRowForo
+*/
 var divRowForo = $('<div>', {
     'class': 'row',
 });
 
+/**
+*@method divGeneralForo
+*/
 var divGeneralForo = $('<div>', {
     'class': 'col-md-12',
 });
 
+/**
+*@method divTituloForo
+*/
 var divTituloForo = $('<div>', {
     'class': 'col-md-12',
 }).append($('<input>',{
@@ -74,6 +110,9 @@ var divTituloForo = $('<div>', {
     'placeholder': 'Titulo',
 })); 
 
+/**
+*@method divContenidoForo
+*/
 var divContenidoForo = $('<div>', {
         'class': 'col-md-12',
     }).append($('<label>').text('Contenido')).append(
@@ -85,6 +124,9 @@ var divContenidoForo = $('<div>', {
             'style': 'resize: none', 
         })); 
 
+/**
+*@method inputEnvioForo
+*/
 var inputEnvioForo = $('<input>', {
     'type' : 'button',
     'class': 'btn btn-success col-md-2',
@@ -92,26 +134,45 @@ var inputEnvioForo = $('<input>', {
     'value': 'Enviar',
 });
 
+/**
+*@method inputSelectForo
+*/
 var inputSelectForo = $('<select>', {
     'id':'categoriaForo',
     'name':'categoriaForo',
     'placeholder':'Categoria',
 });
 
+/**
+*@method optionOpinionForo
+*/
 var optionOpinionForo = $('<option>',{
 	'value':'opiniones'
 }).text('Opinion');
 
+/**
+*@method optionPreguntasForo
+*/
 var optionPreguntasForo = $('<option>',{
 	'value':'preguntas'
 }).text('Preguntas');
 
+/**
+*method optionMejorasForo
+*/
 var optionMejorasForo = $('<option>',{
 	'value':'mejoras'
 }).text('Mejoras');
 
+/**
+*@method selectForo
+*/
 var selectForo =  inputSelectForo.append(optionOpinionForo).append(optionPreguntasForo).append(optionMejorasForo);
 
+/**
+*@method crearFormulario
+*@param divGeneralForo
+*/
 function crearFormulario(){
 	$(function(){
         $(divGeneralForo).append(divTituloForo);
@@ -129,7 +190,9 @@ function crearFormulario(){
 	});
 }
 
-//
+/**
+*@method enviarForo
+*/
 function enviarForo(){
 	var formData = new FormData(document.getElementById('formularioForo'));
 
@@ -146,9 +209,16 @@ function enviarForo(){
 	  console.log(errorThrown);
   	}).done(function(){
   		console.log("setForo success");
+  		$('#tituloForo').val("");
+  		$('#descForo').val("");
+  		$('').delay(800).fadeIn(FadeOutFOR('.FORtable'));
   	})
 }
 
+/**
+*@method getForo
+*@param categoria {String}
+*/
 function getForo(categoria){
 	$.ajax({	
 	    type: 'POST',
@@ -161,9 +231,14 @@ function getForo(categoria){
 	  console.log(errorThrown);
   	}).done(function(res){
   		console.log("getForo success");
-  		console.log(res[0].titulo);
-  		$('#FOR'+categoria+'Tab tbody tr td').eq(0).text(res[0].titulo);
-  		$('#FOR'+categoria+'Tab tbody tr td').eq(1).text(res[0].contenido);
-  		$('#FOR'+categoria+'Tab tbody tr td').eq(2).text(res[0].created_at);
+  		for (var k in res) {
+  			var titulo = $("<td>").text(res[k].titulo);
+  			var contenido = $("<td>").text(res[k].contenido);
+  			var fecha = $("<td>").text(res[k].created_at);
+  			var tr = $("<tr>").append(titulo);
+  			var tr2 = tr.append(contenido);
+  			var trFin = tr2.append(fecha);
+  			$('#FOR'+categoria+'Tab tbody').append(trFin);
+  		}
   	})
 }
