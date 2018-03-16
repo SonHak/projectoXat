@@ -29,7 +29,7 @@
 
   </head>
 
-  <body id="page-top" style="overflow-x:hidden;" onload="dropInPubli()" >
+  <body id="page-top" style="overflow-x:hidden;" onload="crearFormulario()" >
     <div id="caja-flotante" class="collapse">
     
     </div>

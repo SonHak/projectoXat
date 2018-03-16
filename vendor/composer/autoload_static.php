@@ -311,7 +311,7 @@ class ComposerStaticInit58edf556b45999e7113cbab7fc26ff02
     );
 
     public static $classMap = array (
-        'App\\Chats' => __DIR__ . '/../..' . '/app/Chats.php',
+        'App\\Chat' => __DIR__ . '/../..' . '/app/Chat.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Denuncias' => __DIR__ . '/../..' . '/app/Denuncias.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -321,6 +321,7 @@ class ComposerStaticInit58edf556b45999e7113cbab7fc26ff02
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\noticiasController' => __DIR__ . '/../..' . '/app/Http/Controllers/noticiasController.php',
         'App\\Http\\Controllers\\principalController' => __DIR__ . '/../..' . '/app/Http/Controllers/principalController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -335,6 +336,7 @@ class ComposerStaticInit58edf556b45999e7113cbab7fc26ff02
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\noticias' => __DIR__ . '/../..' . '/app/noticias.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',

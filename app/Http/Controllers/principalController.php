@@ -7,6 +7,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use App\Denuncias;
+use App\Foro;
 use App\Mensajes;
 use App\noticias;
 use App\Chat;
@@ -147,11 +148,7 @@ class principalController extends Controller
        /* $missatges = Mensajes::with("usuario")->get();*/
 
         return $missatges;
-    }
-
-
-
-
+    } 
 
     public function formularioNoticia(Request $request){
         $db = new noticias;
@@ -172,5 +169,25 @@ class principalController extends Controller
         $db -> save();
 
         return redirect('home');
+    }
+
+    //Controladores del Foro
+
+    public function setForo(Request $request){
+        $foro = new Foro;
+        $foro -> titulo = $request -> input('tituloForo');
+        $foro -> contenido = $request -> input('descForo');
+        $foro -> categoria = $request -> input('categoriaForo');
+        $foro -> save();
+    }
+
+    public function getForo(Request $request){
+
+        $categoria = $request -> input('categoria');
+
+        $foro = Foro::where("categoria","=",$categoria)
+                            ->orderBy('created_at') 
+                            ->get();
+        return $foro;
     }
 }

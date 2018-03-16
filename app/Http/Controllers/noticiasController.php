@@ -31,6 +31,5 @@ class noticiasController extends Controller
 
     	$categoria = noticias::distinct()->get(['categoria']);	
     	return $noticias;
-
 	}
 }

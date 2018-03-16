@@ -118,7 +118,7 @@
         processData: false,
         contentType: false
    		}).fail(function( jqXHR, textStatus, errorThrown ) {
-          console.log( textStatus + errorThrown);
+          console.log("Error al subir la noticia!");
       	}).done(function(){
       		location.reload(true);
       	})

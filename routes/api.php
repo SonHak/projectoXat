@@ -25,3 +25,7 @@ Route::post('ajaxCategorias', 'noticiasController@categoriaSeleccionada');
 Route::post('noticiasRequest', 'principalController@formularioNoticia');
 
 Route::post('recibirMensajes', 'principalController@recibirMensajes');
+
+Route::post('setForo', 'principalController@setForo');
+
+Route::post('getForo', 'principalController@getForo');
