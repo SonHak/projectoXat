@@ -15,7 +15,15 @@
                         @endforeach
                     </div>
 <button id="btnChat" class="btn btn-success btn-lg" style="border-radius: 10px" onclick="salirChat()">Salir</button>
-<div id="boxChat" class="wrapper" >
+
+<div id="svgAttributes" style="display:none"> 
+        <svg width="128" height="128" viewBox="0 0 128 128">
+            <polygon points="64 69.18098709992343 8.574 99.96354534367093 62.945915024477785 67.35482446554468 64 3.963545343670928 65.05408497552222 67.35482446554468 119.426 99.96354534367093 " fill="green"></polygon>
+            <text  x="65" y="70" text-anchor="middle" fill="white" font-size="15" >loading</text>
+        </svg>
+</div>
+
+<div id="boxChat" class="wrapper" style="display: none">
     <form id="chatRoom" method="POST">
         {{ csrf_field() }}
         <!-- INPUTS HIDDENS -->
@@ -32,7 +40,6 @@
         </nav>
         <div class="inner" id="inner">
             <div class="content" id="content-mensajes" style="vertical-align: middle;">
-                
 
             </div>
         </div>

@@ -37,7 +37,7 @@
 </div> -->
 
 
-<body id="page-top" style="overflow-x:hidden;" onload="dropInPubli()" >
+<body id="page-top" style="overflow-x:hidden;" onload="animation()">
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container" style="background-color: black; opacity: 0.85; padding: 5px 50px;border-radius: 15px">
@@ -81,7 +81,7 @@
 
 
 <!-- AQUÍ VAN NOTICIAS-->
-<section id="noticias" class="content-section text-center" style="height:  1200px;background-color:rgba(255, 255, 255,0.2); color: black;">
+<section id="noticias" class="content-section text-center" style="padding:1%;height:  1200px;background-color:rgba(255, 255, 255,0.2); color: black;">
     <div class="container">
         
             @include('noticias')
@@ -144,6 +144,9 @@
 <script src="{{ url('js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Plugin JavaScript -->
+
+<script src="js/animejs/anime.min.js"></script>
+<script src="js/animejs/anime.js"></script>
 <script src="{{ URL::asset('jquery-easing/jquery.easing.min.js')}}"></script>
 
 <!-- Custom scripts for this template -->

@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>modifiers.carga una animación y muestra un chat con sus mensajes</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/modifiers.carga una animación y muestra un chat con sus mensajes.html">modifiers.carga una animación y muestra un chat con sus mensajes</a></li>
+                                <li><a href="../classes/modifiers.Popper.html">modifiers.Popper</a></li>
+                                <li><a href="../classes/modifiers.recoge las noticias con la categoria especificada y hace una animación.html">modifiers.recoge las noticias con la categoria especificada y hace una animación</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>modifiers.carga una animación y muestra un chat con sus mensajes Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/public_js_chat.js.html#l1"><code>public&#x2F;js&#x2F;chat.js:1</code></a>
+        </div>
+
+
+</div>
+
+
+<div class="box intro">
+    
+</div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_ajaxChat
+Recoge el mensaje que se acaba de mandar y el id del usuario que lo hizo">ajaxChat
+Recoge el mensaje que se acaba de mandar y el id del usuario que lo hizo</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_cambiarChat
+Cambia el de chat">cambiarChat
+Cambia el de chat</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_efectoVisual
+Hace un efecto visual">efectoVisual
+Hace un efecto visual</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_esconderLogo
+ESconde el SVG">esconderLogo
+ESconde el SVG</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_function
+Devuelve un error si ha ido mal">function
+Devuelve un error si ha ido mal</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_function
+Executa la siguiente función si todo funciona">function
+Executa la siguiente función si todo funciona</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_function
+Executa la siguiente función si todo funciona">function
+Executa la siguiente función si todo funciona</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_mensajes
+Recoge los mensajes por AJAX y los muestra">mensajes
+Recoge los mensajes por AJAX y los muestra</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_mostrar
+inicializa el timer, hace el efecto correspondiente y muestra los mensajes por chat">mostrar
+inicializa el timer, hace el efecto correspondiente y muestra los mensajes por chat</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_salirChat
+Hace un efecto de fadeOut en el chat y resetea el timer a 0">salirChat
+Hace un efecto de fadeOut en el chat y resetea el timer a 0</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setInterval
+ejecuta la funcion durante el tiempo especificado">setInterval
+ejecuta la funcion durante el tiempo especificado</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setTimeout
+ejecuta la funcion durante el tiempo especificado">setTimeout
+ejecuta la funcion durante el tiempo especificado</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setTimeout
+ejecuta la funcion durante el tiempo especificado">setTimeout
+ejecuta la funcion durante el tiempo especificado</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_Ajax">Ajax</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_idchat">idchat</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_k">k</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_sala">sala</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_svgAttributes">svgAttributes</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_timer">timer</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_user">user</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_ajaxChat
+Recoge el mensaje que se acaba de mandar y el id del usuario que lo hizo" class="method item">
+    <h3 class="name"><code>ajaxChat
+Recoge el mensaje que se acaba de mandar y el id del usuario que lo hizo</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>id</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l54"><code>public&#x2F;js&#x2F;chat.js:54</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">id</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_cambiarChat
+Cambia el de chat" class="method item">
+    <h3 class="name"><code>cambiarChat
+Cambia el de chat</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>id</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l180"><code>public&#x2F;js&#x2F;chat.js:180</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">id</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_efectoVisual
+Hace un efecto visual" class="method item">
+    <h3 class="name"><code>efectoVisual
+Hace un efecto visual</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l246"><code>public&#x2F;js&#x2F;chat.js:246</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_esconderLogo
+ESconde el SVG" class="method item">
+    <h3 class="name"><code>esconderLogo
+ESconde el SVG</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l274"><code>public&#x2F;js&#x2F;chat.js:274</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_function
+Devuelve un error si ha ido mal" class="method item">
+    <h3 class="name"><code>function
+Devuelve un error si ha ido mal</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l77"><code>public&#x2F;js&#x2F;chat.js:77</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_function
+Executa la siguiente función si todo funciona" class="method item">
+    <h3 class="name"><code>function
+Executa la siguiente función si todo funciona</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l86"><code>public&#x2F;js&#x2F;chat.js:86</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_function
+Executa la siguiente función si todo funciona" class="method item">
+    <h3 class="name"><code>function
+Executa la siguiente función si todo funciona</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>res</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l134"><code>public&#x2F;js&#x2F;chat.js:134</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">res</code>
+                        <span class="type">JSON</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_mensajes
+Recoge los mensajes por AJAX y los muestra" class="method item">
+    <h3 class="name"><code>mensajes
+Recoge los mensajes por AJAX y los muestra</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l100"><code>public&#x2F;js&#x2F;chat.js:100</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_mostrar
+inicializa el timer, hace el efecto correspondiente y muestra los mensajes por chat" class="method item">
+    <h3 class="name"><code>mostrar
+inicializa el timer, hace el efecto correspondiente y muestra los mensajes por chat</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l17"><code>public&#x2F;js&#x2F;chat.js:17</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_salirChat
+Hace un efecto de fadeOut en el chat y resetea el timer a 0" class="method item">
+    <h3 class="name"><code>salirChat
+Hace un efecto de fadeOut en el chat y resetea el timer a 0</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l234"><code>public&#x2F;js&#x2F;chat.js:234</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_setInterval
+ejecuta la funcion durante el tiempo especificado" class="method item">
+    <h3 class="name"><code>setInterval
+ejecuta la funcion durante el tiempo especificado</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>mensajes</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l44"><code>public&#x2F;js&#x2F;chat.js:44</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">mensajes</code>
+                        <span class="type">Función</span>
+
+
+                    <div class="param-description">
+                        <p>| timer {int}</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setTimeout
+ejecuta la funcion durante el tiempo especificado" class="method item">
+    <h3 class="name"><code>setTimeout
+ejecuta la funcion durante el tiempo especificado</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>efectoVisual</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l27"><code>public&#x2F;js&#x2F;chat.js:27</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">efectoVisual</code>
+                        <span class="type">Función</span>
+
+
+                    <div class="param-description">
+                        <p>| timer {int}</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setTimeout
+ejecuta la funcion durante el tiempo especificado" class="method item">
+    <h3 class="name"><code>setTimeout
+ejecuta la funcion durante el tiempo especificado</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>function</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l34"><code>public&#x2F;js&#x2F;chat.js:34</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">function</code>
+                        <span class="type">Función</span>
+
+
+                    <div class="param-description">
+                        <p>| timer {int}</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_Ajax" class="property item">
+    <h3 class="name"><code>Ajax</code></h3>
+    <span class="type">API</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l64"><code>public&#x2F;js&#x2F;chat.js:64</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>funcion ajax que llama a una api y recoge el mensaje enviado</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_idchat" class="property item">
+    <h3 class="name"><code>idchat</code></h3>
+    <span class="type">Int</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l106"><code>public&#x2F;js&#x2F;chat.js:106</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Variable que almacena el id del chat en el que se encuentra el usuario</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_k" class="property item">
+    <h3 class="name"><code>k</code></h3>
+    <span class="type">JSON</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l143"><code>public&#x2F;js&#x2F;chat.js:143</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Variable que contiene array con todos los mensajes</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_sala" class="property item">
+    <h3 class="name"><code>sala</code></h3>
+    <span class="type">String</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l200"><code>public&#x2F;js&#x2F;chat.js:200</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>variable que recoge el id del barrio/chat al que entra</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_svgAttributes" class="property item">
+    <h3 class="name"><code>svgAttributes</code></h3>
+    <span class="type">Anime</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l251"><code>public&#x2F;js&#x2F;chat.js:251</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Variable que ejecuta la animación</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_timer" class="property item">
+    <h3 class="name"><code>timer</code></h3>
+    <span class="type">Int</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l8"><code>public&#x2F;js&#x2F;chat.js:8</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Variable global que determinará el tiempo</p>
+
+    </div>
+
+        <p><strong>Default:</strong> null</p>
+
+
+</div>
+<div id="property_user" class="property item">
+    <h3 class="name"><code>user</code></h3>
+    <span class="type">String</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/public_js_chat.js.html#l113"><code>public&#x2F;js&#x2F;chat.js:113</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Variable que almacena el nombre del usuario</p>
+
+    </div>
+
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>public/js/animejs/anime.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/modifiers.carga una animación y muestra un chat con sus mensajes.html">modifiers.carga una animación y muestra un chat con sus mensajes</a></li>
+                                <li><a href="../classes/modifiers.Popper.html">modifiers.Popper</a></li>
+                                <li><a href="../classes/modifiers.recoge las noticias con la categoria especificada y hace una animación.html">modifiers.recoge las noticias con la categoria especificada y hace una animación</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: public/js/animejs/anime.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * http://animejs.com
+ * JavaScript animation engine
+ * @version v2.2.0
+ * @author Julian Garnier
+ * @copyright ©2017 Julian Garnier
+ * Released under the MIT license
+**/
+
+(function(root, factory) {
+  if (typeof define === &#x27;function&#x27; &amp;&amp; define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory);
+  } else if (typeof module === &#x27;object&#x27; &amp;&amp; module.exports) {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.anime = factory();
+  }
+}(this, () =&gt; {
+
+  // Defaults
+
+  const defaultInstanceSettings = {
+    update: undefined,
+    begin: undefined,
+    run: undefined,
+    complete: undefined,
+    loop: 1,
+    direction: &#x27;normal&#x27;,
+    autoplay: true,
+    offset: 0
+  }
+
+  const defaultTweenSettings = {
+    duration: 1000,
+    delay: 0,
+    easing: &#x27;easeOutElastic&#x27;,
+    elasticity: 500,
+    round: 0
+  }
+
+  const validTransforms = [&#x27;translateX&#x27;, &#x27;translateY&#x27;, &#x27;translateZ&#x27;, &#x27;rotate&#x27;, &#x27;rotateX&#x27;, &#x27;rotateY&#x27;, &#x27;rotateZ&#x27;, &#x27;scale&#x27;, &#x27;scaleX&#x27;, &#x27;scaleY&#x27;, &#x27;scaleZ&#x27;, &#x27;skewX&#x27;, &#x27;skewY&#x27;, &#x27;perspective&#x27;];
+  let transformString;
+
+  // Utils
+
+  function stringContains(str, text) {
+    return str.indexOf(text) &gt; -1;
+  }
+
+  const is = {
+    arr: a =&gt; Array.isArray(a),
+    obj: a =&gt; stringContains(Object.prototype.toString.call(a), &#x27;Object&#x27;),
+    pth: a =&gt; is.obj(a) &amp;&amp; a.hasOwnProperty(&#x27;totalLength&#x27;),
+    svg: a =&gt; a instanceof SVGElement,
+    dom: a =&gt; a.nodeType || is.svg(a),
+    str: a =&gt; typeof a === &#x27;string&#x27;,
+    fnc: a =&gt; typeof a === &#x27;function&#x27;,
+    und: a =&gt; typeof a === &#x27;undefined&#x27;,
+    hex: a =&gt; /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a),
+    rgb: a =&gt; /^rgb/.test(a),
+    hsl: a =&gt; /^hsl/.test(a),
+    col: a =&gt; (is.hex(a) || is.rgb(a) || is.hsl(a))
+  }
+
+  // BezierEasing https://github.com/gre/bezier-easing
+
+  const bezier = (() =&gt; {
+
+    const kSplineTableSize = 11;
+    const kSampleStepSize = 1.0 / (kSplineTableSize - 1.0);
+
+    function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1 };
+    function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1 };
+    function C (aA1)      { return 3.0 * aA1 };
+
+    function calcBezier (aT, aA1, aA2) { return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT };
+    function getSlope (aT, aA1, aA2) { return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1) };
+
+    function binarySubdivide (aX, aA, aB, mX1, mX2) {
+      let currentX, currentT, i = 0;
+      do {
+        currentT = aA + (aB - aA) / 2.0;
+        currentX = calcBezier(currentT, mX1, mX2) - aX;
+        if (currentX &gt; 0.0) { aB = currentT } else { aA = currentT };
+      } while (Math.abs(currentX) &gt; 0.0000001 &amp;&amp; ++i &lt; 10);
+      return currentT;
+    }
+
+    function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
+      for (let i = 0; i &lt; 4; ++i) {
+        const currentSlope = getSlope(aGuessT, mX1, mX2);
+        if (currentSlope === 0.0) return aGuessT;
+        const currentX = calcBezier(aGuessT, mX1, mX2) - aX;
+        aGuessT -= currentX / currentSlope;
+      }
+      return aGuessT;
+    }
+
+    function bezier(mX1, mY1, mX2, mY2) {
+
+      if (!(0 &lt;= mX1 &amp;&amp; mX1 &lt;= 1 &amp;&amp; 0 &lt;= mX2 &amp;&amp; mX2 &lt;= 1)) return;
+      let sampleValues = new Float32Array(kSplineTableSize);
+
+      if (mX1 !== mY1 || mX2 !== mY2) {
+        for (let i = 0; i &lt; kSplineTableSize; ++i) {
+          sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
+        }
+      }
+
+      function getTForX(aX) {
+
+        let intervalStart = 0.0;
+        let currentSample = 1;
+        const lastSample = kSplineTableSize - 1;
+
+        for (; currentSample !== lastSample &amp;&amp; sampleValues[currentSample] &lt;= aX; ++currentSample) {
+          intervalStart += kSampleStepSize;
+        }
+
+        --currentSample;
+
+        const dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
+        const guessForT = intervalStart + dist * kSampleStepSize;
+        const initialSlope = getSlope(guessForT, mX1, mX2);
+
+        if (initialSlope &gt;= 0.001) {
+          return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
+        } else if (initialSlope === 0.0) {
+          return guessForT;
+        } else {
+          return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
+        }
+
+      }
+
+      return x =&gt; {
+        if (mX1 === mY1 &amp;&amp; mX2 === mY2) return x;
+        if (x === 0) return 0;
+        if (x === 1) return 1;
+        return calcBezier(getTForX(x), mY1, mY2);
+      }
+
+    }
+
+    return bezier;
+
+  })();
+
+  const easings = (() =&gt; {
+
+    const names = [&#x27;Quad&#x27;, &#x27;Cubic&#x27;, &#x27;Quart&#x27;, &#x27;Quint&#x27;, &#x27;Sine&#x27;, &#x27;Expo&#x27;, &#x27;Circ&#x27;, &#x27;Back&#x27;, &#x27;Elastic&#x27;];
+
+    // Elastic easing adapted from jQueryUI http://api.jqueryui.com/easings/
+
+    function elastic(t, p) {
+      return t === 0 || t === 1 ? t :
+      -Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2.0) * Math.asin(1))) * (Math.PI * 2)) / p );
+    }
+
+    // Approximated Penner equations http://matthewlein.com/ceaser/
+
+    const equations = {
+      In: [
+        [0.550, 0.085, 0.680, 0.530], /* InQuad */
+        [0.550, 0.055, 0.675, 0.190], /* InCubic */
+        [0.895, 0.030, 0.685, 0.220], /* InQuart */
+        [0.755, 0.050, 0.855, 0.060], /* InQuint */
+        [0.470, 0.000, 0.745, 0.715], /* InSine */
+        [0.950, 0.050, 0.795, 0.035], /* InExpo */
+        [0.600, 0.040, 0.980, 0.335], /* InCirc */
+        [0.600, -0.280, 0.735, 0.045], /* InBack */
+        elastic /* InElastic */
+      ], Out: [
+        [0.250, 0.460, 0.450, 0.940], /* OutQuad */
+        [0.215, 0.610, 0.355, 1.000], /* OutCubic */
+        [0.165, 0.840, 0.440, 1.000], /* OutQuart */
+        [0.230, 1.000, 0.320, 1.000], /* OutQuint */
+        [0.390, 0.575, 0.565, 1.000], /* OutSine */
+        [0.190, 1.000, 0.220, 1.000], /* OutExpo */
+        [0.075, 0.820, 0.165, 1.000], /* OutCirc */
+        [0.175, 0.885, 0.320, 1.275], /* OutBack */
+        (t, f) =&gt; 1 - elastic(1 - t, f) /* OutElastic */
+      ], InOut: [
+        [0.455, 0.030, 0.515, 0.955], /* InOutQuad */
+        [0.645, 0.045, 0.355, 1.000], /* InOutCubic */
+        [0.770, 0.000, 0.175, 1.000], /* InOutQuart */
+        [0.860, 0.000, 0.070, 1.000], /* InOutQuint */
+        [0.445, 0.050, 0.550, 0.950], /* InOutSine */
+        [1.000, 0.000, 0.000, 1.000], /* InOutExpo */
+        [0.785, 0.135, 0.150, 0.860], /* InOutCirc */
+        [0.680, -0.550, 0.265, 1.550], /* InOutBack */
+        (t, f) =&gt; t &lt; .5 ? elastic(t * 2, f) / 2 : 1 - elastic(t * -2 + 2, f) / 2 /* InOutElastic */
+      ]
+    }
+
+    let functions = {
+      linear: bezier(0.250, 0.250, 0.750, 0.750)
+    }
+
+    for (let type in equations) {
+      equations[type].forEach((f, i) =&gt; {
+        functions[&#x27;ease&#x27;+type+names[i]] = is.fnc(f) ? f : bezier.apply(this, f);
+      });
+    }
+
+    return functions;
+
+  })();
+
+  // Strings
+
+  function stringToHyphens(str) {
+    return str.replace(/([a-z])([A-Z])/g, &#x27;$1-$2&#x27;).toLowerCase();
+  }
+
+  function selectString(str) {
+    if (is.col(str)) return;
+    try {
+      let nodes = document.querySelectorAll(str);
+      return nodes;
+    } catch(e) {
+      return;
+    }
+  }
+
+  // Arrays
+
+  function filterArray(arr, callback) {
+    const len = arr.length;
+    const thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
+    let result = [];
+    for (let i = 0; i &lt; len; i++) {
+      if (i in arr) {
+        const val = arr[i];
+        if (callback.call(thisArg, val, i, arr)) {
+          result.push(val);
+        }
+      }
+    }
+    return result;
+  }
+
+  function flattenArray(arr) {
+    return arr.reduce((a, b) =&gt; a.concat(is.arr(b) ? flattenArray(b) : b), []);
+  }
+
+  function toArray(o) {
+    if (is.arr(o)) return o;
+    if (is.str(o)) o = selectString(o) || o;
+    if (o instanceof NodeList || o instanceof HTMLCollection) return [].slice.call(o);
+    return [o];
+  }
+
+  function arrayContains(arr, val) {
+    return arr.some(a =&gt; a === val);
+  }
+
+  // Objects
+
+  function cloneObject(o) {
+    let clone = {};
+    for (let p in o) clone[p] = o[p];
+    return clone;
+  }
+
+  function replaceObjectProps(o1, o2) {
+    let o = cloneObject(o1);
+    for (let p in o1) o[p] = o2.hasOwnProperty(p) ? o2[p] : o1[p];
+    return o;
+  }
+
+  function mergeObjects(o1, o2) {
+    let o = cloneObject(o1);
+    for (let p in o2) o[p] = is.und(o1[p]) ? o2[p] : o1[p];
+    return o;
+  }
+
+  // Colors
+
+  function rgbToRgba(rgbValue) {
+    const rgb = /rgb\((\d+,\s*[\d]+,\s*[\d]+)\)/g.exec(rgbValue);
+    return rgb ? &#x60;rgba(${rgb[1]},1)&#x60; : rgbValue;
+  }
+
+  function hexToRgba(hexValue) {
+    const rgx = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    const hex = hexValue.replace(rgx, (m, r, g, b) =&gt; r + r + g + g + b + b );
+    const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    const r = parseInt(rgb[1], 16);
+    const g = parseInt(rgb[2], 16);
+    const b = parseInt(rgb[3], 16);
+    return &#x60;rgba(${r},${g},${b},1)&#x60;;
+  }
+
+  function hslToRgba(hslValue) {
+    const hsl = /hsl\((\d+),\s*([\d.]+)%,\s*([\d.]+)%\)/g.exec(hslValue) || /hsla\((\d+),\s*([\d.]+)%,\s*([\d.]+)%,\s*([\d.]+)\)/g.exec(hslValue);
+    const h = parseInt(hsl[1]) / 360;
+    const s = parseInt(hsl[2]) / 100;
+    const l = parseInt(hsl[3]) / 100;
+    const a = hsl[4] || 1;
+    function hue2rgb(p, q, t) {
+      if (t &lt; 0) t += 1;
+      if (t &gt; 1) t -= 1;
+      if (t &lt; 1/6) return p + (q - p) * 6 * t;
+      if (t &lt; 1/2) return q;
+      if (t &lt; 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    }
+    let r, g, b;
+    if (s == 0) {
+      r = g = b = l;
+    } else {
+      const q = l &lt; 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+    }
+    return &#x60;rgba(${r * 255},${g * 255},${b * 255},${a})&#x60;;
+  }
+
+  function colorToRgb(val) {
+    if (is.rgb(val)) return rgbToRgba(val);
+    if (is.hex(val)) return hexToRgba(val);
+    if (is.hsl(val)) return hslToRgba(val);
+  }
+
+  // Units
+
+  function getUnit(val) {
+    const split = /([\+\-]?[0-9#\.]+)(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(val);
+    if (split) return split[2];
+  }
+
+  function getTransformUnit(propName) {
+    if (stringContains(propName, &#x27;translate&#x27;) || propName === &#x27;perspective&#x27;) return &#x27;px&#x27;;
+    if (stringContains(propName, &#x27;rotate&#x27;) || stringContains(propName, &#x27;skew&#x27;)) return &#x27;deg&#x27;;
+  }
+
+  // Values
+
+  function minMaxValue(val, min, max) {
+    return Math.min(Math.max(val, min), max);
+  }
+
+  function getFunctionValue(val, animatable) {
+    if (!is.fnc(val)) return val;
+    return val(animatable.target, animatable.id, animatable.total);
+  }
+
+  function getCSSValue(el, prop) {
+    if (prop in el.style) {
+      return getComputedStyle(el).getPropertyValue(stringToHyphens(prop)) || &#x27;0&#x27;;
+    }
+  }
+
+  function getAnimationType(el, prop) {
+    if (is.dom(el) &amp;&amp; arrayContains(validTransforms, prop)) return &#x27;transform&#x27;;
+    if (is.dom(el) &amp;&amp; (el.getAttribute(prop) || (is.svg(el) &amp;&amp; el[prop]))) return &#x27;attribute&#x27;;
+    if (is.dom(el) &amp;&amp; (prop !== &#x27;transform&#x27; &amp;&amp; getCSSValue(el, prop))) return &#x27;css&#x27;;
+    if (el[prop] != null) return &#x27;object&#x27;;
+  }
+
+  function getTransformValue(el, propName) {
+    const defaultUnit = getTransformUnit(propName);
+    const defaultVal = stringContains(propName, &#x27;scale&#x27;) ? 1 : 0 + defaultUnit;
+    const str = el.style.transform;
+    if (!str) return defaultVal;
+    let match = [];
+    let props = [];
+    let values = [];
+    const rgx = /(\w+)\((.+?)\)/g;
+    while (match = rgx.exec(str)) {
+      props.push(match[1]);
+      values.push(match[2]);
+    }
+    const value = filterArray(values, (val, i) =&gt; props[i] === propName);
+    return value.length ? value[0] : defaultVal;
+  }
+
+  function getOriginalTargetValue(target, propName) {
+    switch (getAnimationType(target, propName)) {
+      case &#x27;transform&#x27;: return getTransformValue(target, propName);
+      case &#x27;css&#x27;: return getCSSValue(target, propName);
+      case &#x27;attribute&#x27;: return target.getAttribute(propName);
+    }
+    return target[propName] || 0;
+  }
+
+  function getRelativeValue(to, from) {
+    const operator = /^(\*=|\+=|-=)/.exec(to);
+    if (!operator) return to;
+    const u = getUnit(to) || 0;
+    const x = parseFloat(from);
+    const y = parseFloat(to.replace(operator[0], &#x27;&#x27;));
+    switch (operator[0][0]) {
+      case &#x27;+&#x27;: return x + y + u;
+      case &#x27;-&#x27;: return x - y + u;
+      case &#x27;*&#x27;: return x * y + u;
+    }
+  }
+
+  function validateValue(val, unit) {
+    if (is.col(val)) return colorToRgb(val);
+    const originalUnit = getUnit(val);
+    const unitLess = originalUnit ? val.substr(0, val.length - originalUnit.length) : val;
+    return unit &amp;&amp; !/\s/g.test(val) ? unitLess + unit : unitLess;
+  }
+
+  // getTotalLength() equivalent for circle, rect, polyline, polygon and line shapes. 
+  // adapted from https://gist.github.com/SebLambla/3e0550c496c236709744
+
+  function getDistance(p1, p2) {
+    return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2)); 
+  }
+
+  function getCircleLength(el) {
+    return 2 * Math.PI * el.getAttribute(&#x27;r&#x27;);
+  }
+
+  function getRectLength(el) {
+    return (el.getAttribute(&#x27;width&#x27;) * 2) + (el.getAttribute(&#x27;height&#x27;) * 2);
+  }
+
+  function getLineLength(el) {
+    return getDistance(
+      {x: el.getAttribute(&#x27;x1&#x27;), y: el.getAttribute(&#x27;y1&#x27;)}, 
+      {x: el.getAttribute(&#x27;x2&#x27;), y: el.getAttribute(&#x27;y2&#x27;)}
+    );
+  }
+
+  function getPolylineLength(el) {
+    const points = el.points;
+    let totalLength = 0;
+    let previousPos;
+    for (let i = 0 ; i &lt; points.numberOfItems; i++) {
+      const currentPos = points.getItem(i);
+      if (i &gt; 0) totalLength += getDistance(previousPos, currentPos);
+      previousPos = currentPos;
+    }
+    return totalLength;
+  }
+
+  function getPolygonLength(el) {
+    const points = el.points;
+    return getPolylineLength(el) + getDistance(points.getItem(points.numberOfItems - 1), points.getItem(0));
+  }
+
+  // Path animation
+
+  function getTotalLength(el) {
+    if (el.getTotalLength) return el.getTotalLength();
+    switch(el.tagName.toLowerCase()) {
+      case &#x27;circle&#x27;: return getCircleLength(el);
+      case &#x27;rect&#x27;: return getRectLength(el);
+      case &#x27;line&#x27;: return getLineLength(el);
+      case &#x27;polyline&#x27;: return getPolylineLength(el);
+      case &#x27;polygon&#x27;: return getPolygonLength(el);
+    }
+  }
+
+  function setDashoffset(el) {
+    const pathLength = getTotalLength(el);
+    el.setAttribute(&#x27;stroke-dasharray&#x27;, pathLength);
+    return pathLength;
+  }
+
+  // Motion path
+
+  function getPath(path, percent) {
+    const el = is.str(path) ? selectString(path)[0] : path;
+    const p = percent || 100;
+    return function(prop) {
+      return {
+        el: el,
+        property: prop,
+        totalLength: getTotalLength(el) * (p / 100)
+      }
+    }
+  }
+
+  function getPathProgress(path, progress) {
+    function point(offset = 0) {
+      const l = progress + offset &gt;= 1 ? progress + offset : 0;
+      return path.el.getPointAtLength(l);
+    }
+    const p = point();
+    const p0 = point(-1);
+    const p1 = point(+1);
+    switch (path.property) {
+      case &#x27;x&#x27;: return p.x;
+      case &#x27;y&#x27;: return p.y;
+      case &#x27;angle&#x27;: return Math.atan2(p1.y - p0.y, p1.x - p0.x) * 180 / Math.PI;
+    }
+  }
+
+  // Decompose value
+
+  function decomposeValue(val, unit) {
+    const rgx = /-?\d*\.?\d+/g;
+    const value = validateValue((is.pth(val) ? val.totalLength : val), unit) + &#x27;&#x27;;
+    return {
+      original: value,
+      numbers: value.match(rgx) ? value.match(rgx).map(Number) : [0],
+      strings: (is.str(val) || unit) ? value.split(rgx) : []
+    }
+  }
+
+  // Animatables
+
+  function parseTargets(targets) {
+    const targetsArray = targets ? (flattenArray(is.arr(targets) ? targets.map(toArray) : toArray(targets))) : [];
+    return filterArray(targetsArray, (item, pos, self) =&gt; self.indexOf(item) === pos);
+  }
+
+  function getAnimatables(targets) {
+    const parsed = parseTargets(targets);
+    return parsed.map((t, i) =&gt; {
+      return {target: t, id: i, total: parsed.length};
+    });
+  }
+
+  // Properties
+
+  function normalizePropertyTweens(prop, tweenSettings) {
+    let settings = cloneObject(tweenSettings);
+    if (is.arr(prop)) {
+      const l = prop.length;
+      const isFromTo = (l === 2 &amp;&amp; !is.obj(prop[0]));
+      if (!isFromTo) {
+        // Duration divided by the number of tweens
+        if (!is.fnc(tweenSettings.duration)) settings.duration = tweenSettings.duration / l;
+      } else {
+        // Transform [from, to] values shorthand to a valid tween value
+        prop = {value: prop};
+      }
+    }
+    return toArray(prop).map((v, i) =&gt; {
+      // Default delay value should be applied only on the first tween
+      const delay = !i ? tweenSettings.delay : 0;
+      // Use path object as a tween value
+      let obj = is.obj(v) &amp;&amp; !is.pth(v) ? v : {value: v};
+      // Set default delay value
+      if (is.und(obj.delay)) obj.delay = delay;
+      return obj;
+    }).map(k =&gt; mergeObjects(k, settings));
+  }
+
+  function getProperties(instanceSettings, tweenSettings, params) {
+    let properties = [];
+    const settings = mergeObjects(instanceSettings, tweenSettings);
+    for (let p in params) {
+      if (!settings.hasOwnProperty(p) &amp;&amp; p !== &#x27;targets&#x27;) {
+        properties.push({
+          name: p,
+          offset: settings[&#x27;offset&#x27;],
+          tweens: normalizePropertyTweens(params[p], tweenSettings)
+        });
+      }
+    }
+    return properties;
+  }
+
+  // Tweens
+
+  function normalizeTweenValues(tween, animatable) {
+    let t = {};
+    for (let p in tween) {
+      let value = getFunctionValue(tween[p], animatable);
+      if (is.arr(value)) {
+        value = value.map(v =&gt; getFunctionValue(v, animatable));
+        if (value.length === 1) value = value[0];
+      }
+      t[p] = value;
+    }
+    t.duration = parseFloat(t.duration);
+    t.delay = parseFloat(t.delay);
+    return t;
+  }
+
+  function normalizeEasing(val) {
+    return is.arr(val) ? bezier.apply(this, val) : easings[val];
+  }
+
+  function normalizeTweens(prop, animatable) {
+    let previousTween;
+    return prop.tweens.map(t =&gt; {
+      let tween = normalizeTweenValues(t, animatable);
+      const tweenValue = tween.value;
+      const originalValue = getOriginalTargetValue(animatable.target, prop.name);
+      const previousValue = previousTween ? previousTween.to.original : originalValue;
+      const from = is.arr(tweenValue) ? tweenValue[0] : previousValue;
+      const to = getRelativeValue(is.arr(tweenValue) ? tweenValue[1] : tweenValue, from);
+      const unit = getUnit(to) || getUnit(from) || getUnit(originalValue);
+      tween.from = decomposeValue(from, unit);
+      tween.to = decomposeValue(to, unit);
+      tween.start = previousTween ? previousTween.end : prop.offset;
+      tween.end = tween.start + tween.delay + tween.duration;
+      tween.easing = normalizeEasing(tween.easing);
+      tween.elasticity = (1000 - minMaxValue(tween.elasticity, 1, 999)) / 1000;
+      tween.isPath = is.pth(tweenValue);
+      tween.isColor = is.col(tween.from.original);
+      if (tween.isColor) tween.round = 1;
+      previousTween = tween;
+      return tween;
+    });
+  }
+
+  // Tween progress
+
+  const setTweenProgress = {
+    css: (t, p, v) =&gt; t.style[p] = v,
+    attribute: (t, p, v) =&gt; t.setAttribute(p, v),
+    object: (t, p, v) =&gt; t[p] = v,
+    transform: (t, p, v, transforms, id) =&gt; {
+      if (!transforms[id]) transforms[id] = [];
+      transforms[id].push(&#x60;${p}(${v})&#x60;);
+    }
+  }
+
+  // Animations
+
+  function createAnimation(animatable, prop) {
+    const animType = getAnimationType(animatable.target, prop.name);
+    if (animType) {
+      const tweens = normalizeTweens(prop, animatable);
+      return {
+        type: animType,
+        property: prop.name,
+        animatable: animatable,
+        tweens: tweens,
+        duration: tweens[tweens.length - 1].end,
+        delay: tweens[0].delay
+      }
+    }
+  }
+
+  function getAnimations(animatables, properties) {
+    return filterArray(flattenArray(animatables.map(animatable =&gt; {
+      return properties.map(prop =&gt; {
+        return createAnimation(animatable, prop);
+      });
+    })), a =&gt; !is.und(a));
+  }
+
+  // Create Instance
+
+  function getInstanceTimings(type, animations, instanceSettings, tweenSettings) {
+    const isDelay = (type === &#x27;delay&#x27;);
+    if (animations.length) {
+      return (isDelay ? Math.min : Math.max).apply(Math, animations.map(anim =&gt; anim[type]));
+    } else {
+      return isDelay ? tweenSettings.delay : instanceSettings.offset + tweenSettings.delay + tweenSettings.duration;
+    }
+  }
+
+  function createNewInstance(params) {
+    const instanceSettings = replaceObjectProps(defaultInstanceSettings, params);
+    const tweenSettings = replaceObjectProps(defaultTweenSettings, params);
+    const animatables = getAnimatables(params.targets);
+    const properties = getProperties(instanceSettings, tweenSettings, params);
+    const animations = getAnimations(animatables, properties);
+    return mergeObjects(instanceSettings, {
+      children: [],
+      animatables: animatables,
+      animations: animations,
+      duration: getInstanceTimings(&#x27;duration&#x27;, animations, instanceSettings, tweenSettings),
+      delay: getInstanceTimings(&#x27;delay&#x27;, animations, instanceSettings, tweenSettings)
+    });
+  }
+
+  // Core
+
+  let activeInstances = [];
+  let raf = 0;
+
+  const engine = (() =&gt; {
+    function play() { raf = requestAnimationFrame(step); };
+    function step(t) {
+      const activeLength = activeInstances.length;
+      if (activeLength) {
+        let i = 0;
+        while (i &lt; activeLength) {
+          if (activeInstances[i]) activeInstances[i].tick(t);
+          i++;
+        }
+        play();
+      } else {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    }
+    return play;
+  })();
+
+
+  // Public Instance
+
+  function anime(params = {}) {
+
+    let now, startTime, lastTime = 0;
+
+    let resolve = null;
+
+    function makePromise() {
+      return window.Promise &amp;&amp; new Promise(_resolve =&gt; resolve = _resolve);
+    }
+
+    let promise = makePromise();
+
+    let instance = createNewInstance(params);
+
+    function toggleInstanceDirection() {
+      instance.reversed = !instance.reversed;
+    }
+
+    function adjustTime(time) {
+      return instance.reversed ? instance.duration - time : time;
+    }
+
+    function syncInstanceChildren(time) {
+      const children = instance.children;
+      const childrenLength = children.length;
+      if (time &gt;= instance.currentTime) {
+        for (let i = 0; i &lt; childrenLength; i++) children[i].seek(time);
+      } else {
+        for (let i = childrenLength; i--;) children[i].seek(time);
+      }
+    }
+
+    function setAnimationsProgress(insTime) {
+      let i = 0;
+      let transforms = {};
+      const animations = instance.animations;
+      const animationsLength = animations.length;
+      while (i &lt; animationsLength) {
+        const anim = animations[i];
+        const animatable = anim.animatable;
+        const tweens = anim.tweens;
+        const tweenLength = tweens.length - 1;
+        let tween = tweens[tweenLength];
+        // Only check for keyframes if there is more than one tween
+        if (tweenLength) tween = filterArray(tweens, t =&gt; (insTime &lt; t.end))[0] || tween;
+        const elapsed = minMaxValue(insTime - tween.start - tween.delay, 0, tween.duration) / tween.duration;
+        const eased = isNaN(elapsed) ? 1 : tween.easing(elapsed, tween.elasticity);
+        const strings = tween.to.strings;
+        const round = tween.round;
+        let numbers = [];
+        let progress;
+        const toNumbersLength = tween.to.numbers.length;
+        for (let n = 0; n &lt; toNumbersLength; n++) {
+          let value;
+          const toNumber = tween.to.numbers[n];
+          const fromNumber = tween.from.numbers[n];
+          if (!tween.isPath) {
+            value = fromNumber + (eased * (toNumber - fromNumber));
+          } else {
+            value = getPathProgress(tween.value, eased * toNumber);
+          }
+          if (round) {
+            if (!(tween.isColor &amp;&amp; n &gt; 2)) {
+              value = Math.round(value * round) / round;
+            }
+          }
+          numbers.push(value);
+        }
+        // Manual Array.reduce for better performances
+        const stringsLength = strings.length;
+        if (!stringsLength) {
+          progress = numbers[0];
+        } else {
+          progress = strings[0];
+          for (let s = 0; s &lt; stringsLength; s++) {
+            const a = strings[s];
+            const b = strings[s + 1];
+            const n = numbers[s];
+            if (!isNaN(n)) {
+              if (!b) {
+                progress += n + &#x27; &#x27;;
+              } else {
+                progress += n + b;
+              }
+            }
+          }
+        }
+        setTweenProgress[anim.type](animatable.target, anim.property, progress, transforms, animatable.id);
+        anim.currentValue = progress;
+        i++;
+      }
+      const transformsLength = Object.keys(transforms).length;
+      if (transformsLength) {
+        for (let id = 0; id &lt; transformsLength; id++) {
+          if (!transformString) {
+            const t = &#x27;transform&#x27;;
+            transformString = (getCSSValue(document.body, t) ? t : &#x60;-webkit-${t}&#x60;);
+          }
+          instance.animatables[id].target.style[transformString] = transforms[id].join(&#x27; &#x27;);
+        }
+      }
+      instance.currentTime = insTime;
+      instance.progress = (insTime / instance.duration) * 100;
+    }
+
+    function setCallback(cb) {
+      if (instance[cb]) instance[cb](instance);
+    }
+
+    function countIteration() {
+      if (instance.remaining &amp;&amp; instance.remaining !== true) {
+        instance.remaining--;
+      }
+    }
+
+    function setInstanceProgress(engineTime) {
+      const insDuration = instance.duration;
+      const insOffset = instance.offset;
+      const insStart = insOffset + instance.delay;
+      const insCurrentTime = instance.currentTime;
+      const insReversed = instance.reversed;
+      const insTime = adjustTime(engineTime);
+      if (instance.children.length) syncInstanceChildren(insTime);
+      if (insTime &gt;= insStart || !insDuration) {
+        if (!instance.began) {
+          instance.began = true;
+          setCallback(&#x27;begin&#x27;);
+        }
+        setCallback(&#x27;run&#x27;);
+      }
+      if (insTime &gt; insOffset &amp;&amp; insTime &lt; insDuration) {
+        setAnimationsProgress(insTime);
+      } else {
+        if (insTime &lt;= insOffset &amp;&amp; insCurrentTime !== 0) {
+          setAnimationsProgress(0);
+          if (insReversed) countIteration();
+        }
+        if ((insTime &gt;= insDuration &amp;&amp; insCurrentTime !== insDuration) || !insDuration) {
+          setAnimationsProgress(insDuration);
+          if (!insReversed) countIteration();
+        }
+      }
+      setCallback(&#x27;update&#x27;);
+      if (engineTime &gt;= insDuration) {
+        if (instance.remaining) {
+          startTime = now;
+          if (instance.direction === &#x27;alternate&#x27;) toggleInstanceDirection();
+        } else {
+          instance.pause();
+          if (!instance.completed) {
+            instance.completed = true;
+            setCallback(&#x27;complete&#x27;);
+            if (&#x27;Promise&#x27; in window) {
+              resolve();
+              promise = makePromise();
+            }
+          }
+        }
+        lastTime = 0;
+      }
+    }
+
+    instance.reset = function() {
+      const direction = instance.direction;
+      const loops = instance.loop;
+      instance.currentTime = 0;
+      instance.progress = 0;
+      instance.paused = true;
+      instance.began = false;
+      instance.completed = false;
+      instance.reversed = direction === &#x27;reverse&#x27;;
+      instance.remaining = direction === &#x27;alternate&#x27; &amp;&amp; loops === 1 ? 2 : loops;
+      setAnimationsProgress(0);
+      for (let i = instance.children.length; i--; ){
+        instance.children[i].reset();
+      }
+    }
+
+    instance.tick = function(t) {
+      now = t;
+      if (!startTime) startTime = now;
+      const engineTime = (lastTime + now - startTime) * anime.speed;
+      setInstanceProgress(engineTime);
+    }
+
+    instance.seek = function(time) {
+      setInstanceProgress(adjustTime(time));
+    }
+
+    instance.pause = function() {
+      const i = activeInstances.indexOf(instance);
+      if (i &gt; -1) activeInstances.splice(i, 1);
+      instance.paused = true;
+    }
+
+    instance.play = function() {
+      if (!instance.paused) return;
+      instance.paused = false;
+      startTime = 0;
+      lastTime = adjustTime(instance.currentTime);
+      activeInstances.push(instance);
+      if (!raf) engine();
+    }
+
+    instance.reverse = function() {
+      toggleInstanceDirection();
+      startTime = 0;
+      lastTime = adjustTime(instance.currentTime);
+    }
+
+    instance.restart = function() {
+      instance.pause();
+      instance.reset();
+      instance.play();
+    }
+
+    instance.finished = promise;
+
+    instance.reset();
+
+    if (instance.autoplay) instance.play();
+
+    return instance;
+
+  }
+
+  // Remove targets from animation
+
+  function removeTargets(targets) {
+    const targetsArray = parseTargets(targets);
+    for (let i = activeInstances.length; i--;) {
+      const instance = activeInstances[i];
+      const animations = instance.animations;
+      for (let a = animations.length; a--;) {
+        if (arrayContains(targetsArray, animations[a].animatable.target)) {
+          animations.splice(a, 1);
+          if (!animations.length) instance.pause();
+        }
+      }
+    }
+  }
+
+  // Timeline
+
+  function timeline(params) {
+    let tl = anime(params);
+    tl.pause();
+    tl.duration = 0;
+    tl.add = function(instancesParams) {
+      tl.children.forEach(i =&gt; { i.began = true; i.completed = true; });
+      toArray(instancesParams).forEach(instanceParams =&gt; {
+        let insParams = mergeObjects(instanceParams, replaceObjectProps(defaultTweenSettings, params || {}));
+        insParams.targets = insParams.targets || params.targets;
+        const tlDuration = tl.duration;
+        const insOffset = insParams.offset;
+        insParams.autoplay = false;
+        insParams.direction = tl.direction;
+        insParams.offset = is.und(insOffset) ? tlDuration : getRelativeValue(insOffset, tlDuration);
+        tl.began = true;
+        tl.completed = true;
+        tl.seek(insParams.offset);
+        const ins = anime(insParams);
+        ins.began = true;
+        ins.completed = true;
+        if (ins.duration &gt; tlDuration) tl.duration = ins.duration;
+        tl.children.push(ins);
+      });
+      tl.seek(0);
+      tl.reset();
+      if (tl.autoplay) tl.restart();
+      return tl;
+    }
+    return tl;
+  }
+
+  anime.version = &#x27;2.2.0&#x27;;
+  anime.speed = 1;
+  anime.running = activeInstances;
+  anime.remove = removeTargets;
+  anime.getValue = getOriginalTargetValue;
+  anime.path = getPath;
+  anime.setDashoffset = setDashoffset;
+  anime.bezier = bezier;
+  anime.easings = easings;
+  anime.timeline = timeline;
+  anime.random = (min, max) =&gt; Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return anime;
+
+}));
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

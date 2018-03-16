@@ -175,7 +175,9 @@
 
     <!-- Plugin JavaScript -->
     <script src="{{ URL::asset('jquery-easing/jquery.easing.min.js')}}"></script>
-
+    <script src="js/animejs/anime.min.js"></script>
+    <script src="js/animejs/anime.js"></script>
+    
     <!-- Custom scripts for this template -->
     <script type="text/javascript" src="{{ url('js/grayscale.js')}}"></script>
     <script type="text/javascript" src="{{ url('js/breadcrumbs.js')}}"></script>
